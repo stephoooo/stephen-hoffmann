@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stephen Hoffmann</title>
+<meta name="description" content="Stephen Hoffmann — Consumer Science M.Sc. an der TUM, Werkstudent bei der BMW Group. Daten, Verhalten, KI.">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23201c16'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23eae6dc' text-anchor='middle'%3ESH%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#EAE6DC;
+    --paper-raised:#F1EDE3;
+    --ink:#201C16;
+    --muted:#726A5B;
+    --line:#CFC7B4;
+    --cobalt:#2C4A73;
+    --amber:#A8721F;
+    --amber-soft:#E4C793;
+    --max:760px;
+    --note:240px;
+    --gap:56px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  ::selection{background:var(--amber-soft); color:var(--ink);}
+
+  a{color:var(--cobalt); text-decoration:none;}
+  .u-link{
+    background-image:linear-gradient(var(--amber), var(--amber));
+    background-position:0 100%;
+    background-repeat:no-repeat;
+    background-size:0% 1px;
+    transition:background-size .25s ease;
+    padding-bottom:1px;
+  }
+  .u-link:hover, .u-link:focus-visible{ background-size:100% 1px; }
+
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--cobalt);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  .wrap{ max-width:960px; margin:0 auto; padding:0 28px; }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--amber);
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin:0 0 14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px;
+    background:var(--amber);
+    display:inline-block;
+  }
+
+  /* ---------- Nav ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    background:rgba(234,230,220,0);
+    border-bottom:1px solid transparent;
+    transition:background .3s ease, border-color .3s ease, box-shadow .3s ease;
+  }
+  .topbar.scrolled{
+    background:rgba(234,230,220,.92);
+    backdrop-filter:blur(6px);
+    border-bottom-color:var(--line);
+    box-shadow:0 4px 18px -12px rgba(32,28,22,.35);
+  }
+  .topbar-inner{
+    max-width:960px; margin:0 auto; width:100%;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--ink);
+  }
+  .brand-mark{
+    width:26px; height:26px;
+    background:var(--ink);
+    color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Newsreader', serif;
+    font-size:14px;
+    flex-shrink:0;
+  }
+  .navlinks{
+    display:flex; gap:26px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:.02em;
+  }
+  .navlinks a{ color:var(--muted); }
+  .navlinks a:hover{ color:var(--ink); }
+  @media (max-width:640px){
+    .navlinks{ display:none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:96px 0 64px;
+    position:relative;
+    background-image:radial-gradient(var(--ink) 0.6px, transparent 0.6px);
+    background-size:22px 22px;
+    background-position:-6px -6px;
+    -webkit-mask-image:linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+    mask-image:linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+  }
+  .hero-content{
+    background:var(--paper);
+  }
+  .hero-inner{
+    opacity:0; transform:translateY(14px);
+    animation:heroIn .7s ease forwards .1s;
+  }
+  @keyframes heroIn{ to{ opacity:1; transform:translateY(0);} }
+
+  .hero h1{
+    font-family:'Newsreader', serif;
+    font-weight:500;
+    font-size:clamp(2.6rem, 6vw, 4.1rem);
+    line-height:1.04;
+    margin:0 0 18px;
+    letter-spacing:-.01em;
+  }
+  .hero-role{
+    font-family:'IBM Plex Sans';
+    font-size:16px;
+    color:var(--muted);
+    margin:0 0 30px;
+    max-width:520px;
+  }
+  .hero-role strong{ color:var(--ink); font-weight:500; }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1fr auto;
+    align-items:start;
+    gap:40px;
+  }
+  .hero-photo{
+    width:158px; height:158px;
+    border-radius:50%;
+    overflow:hidden;
+    flex-shrink:0;
+    box-shadow:0 0 0 1px var(--line), 0 0 0 8px var(--paper), 0 0 0 9px var(--amber-soft);
+    margin-top:4px;
+  }
+  .hero-photo img{ width:100%; height:100%; object-fit:cover; display:block; }
+  @media (max-width:640px){
+    .hero-grid{ grid-template-columns:1fr; justify-items:center; text-align:center; gap:26px; }
+    .hero-grid .hero-text{ order:2; }
+    .hero-photo{ order:1; width:132px; height:132px; }
+    .hero-role, .hero-thesis{ max-width:none; }
+    .cta-row{ justify-content:center; }
+  }
+
+  .hero-thesis{
+    font-family:'Newsreader', serif;
+    font-style:italic;
+    font-size:clamp(1.15rem, 2.4vw, 1.4rem);
+    line-height:1.55;
+    max-width:620px;
+    color:var(--ink);
+    margin:0 0 36px;
+  }
+
+  .cta-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13.5px;
+    letter-spacing:.02em;
+    padding:12px 20px;
+    border-radius:3px;
+    display:inline-flex; align-items:center; gap:8px;
+    transition:transform .15s ease, background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .btn-solid{ background:var(--ink); color:var(--paper); }
+  .btn-solid:hover{ transform:translateY(-1px); background:var(--cobalt); }
+  .btn-outline{ border:1px solid var(--ink); color:var(--ink); }
+  .btn-outline:hover{ transform:translateY(-1px); border-color:var(--cobalt); color:var(--cobalt); }
+
+  /* ---------- Sections ---------- */
+  .section{ padding:64px 0; border-top:1px solid var(--line); }
+  .section h2{
+    font-family:'Newsreader', serif;
+    font-weight:500;
+    font-size:clamp(1.7rem, 3.2vw, 2.1rem);
+    margin:0 0 34px;
+  }
+
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+
+  /* annotated (content + margin note) grid */
+  .annotated{ display:grid; grid-template-columns:1fr; column-gap:var(--gap); row-gap:10px; }
+  @media (min-width:1040px){
+    .annotated{ grid-template-columns:minmax(0,var(--max)) var(--note); }
+  }
+  .note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    line-height:1.65;
+    color:var(--muted);
+    border-left:2px solid var(--amber-soft);
+    padding-left:14px;
+    margin:2px 0 18px;
+  }
+  @media (min-width:1040px){
+    .note{ margin:3px 0 0; }
+  }
+  .note b{ color:var(--ink); font-weight:500; }
+
+  sup.ref{
+    font-family:'IBM Plex Mono', monospace;
+    color:var(--amber);
+    font-size:.68em;
+    margin-left:1px;
+  }
+
+  /* experience */
+  .role{ margin-bottom:42px; }
+  .role:last-child{ margin-bottom:0; }
+  .role-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    gap:16px; flex-wrap:wrap;
+  }
+  .role-title{ font-weight:600; font-size:1.08rem; }
+  .role-dates{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:var(--muted);
+    white-space:nowrap;
+  }
+  .role-sub{ color:var(--muted); font-size:14.5px; margin:3px 0 12px; }
+  .role ul{ margin:0; padding-left:18px; }
+  .role li{ margin-bottom:6px; }
+  .role li::marker{ color:var(--amber); }
+
+  .timeline-compact{ list-style:none; margin:0; padding:0; max-width:var(--max); }
+  .timeline-compact li{
+    display:flex; gap:18px; padding:11px 0; border-top:1px solid var(--line);
+    font-size:14.5px;
+  }
+  .timeline-compact li:first-child{ border-top:none; }
+  .tc-date{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; color:var(--muted);
+    width:128px; flex-shrink:0; padding-top:2px;
+  }
+  .tc-what b{ font-weight:600; }
+  .tc-where{ color:var(--muted); }
+
+  .subhead{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--muted);
+    margin:44px 0 16px;
+  }
+
+  /* projects */
+  .cards{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+  }
+  @media (max-width:860px){ .cards{ grid-template-columns:1fr; } }
+  .card{
+    background:var(--paper-raised);
+    border:1px solid var(--line);
+    padding:26px 24px;
+    display:flex; flex-direction:column;
+  }
+  .card-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--amber); margin-bottom:10px;
+  }
+  .card h3{
+    font-family:'Newsreader', serif; font-weight:600;
+    font-size:1.3rem; margin:0 0 10px;
+  }
+  .card p{ color:var(--ink); font-size:14.5px; margin:0; flex-grow:1; }
+
+  /* education */
+  .edu-row{
+    display:flex; justify-content:space-between; gap:20px;
+    padding:18px 0; border-top:1px solid var(--line);
+    flex-wrap:wrap;
+  }
+  .edu-row:first-child{ border-top:none; }
+  .edu-left b{ font-weight:600; }
+  .edu-sub{ color:var(--muted); font-size:14px; margin-top:2px; }
+  .edu-right{ text-align:right; }
+  .edu-dates{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted); }
+  .edu-grade{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--amber); margin-top:4px; }
+
+  /* skills */
+  .skill-group{ margin-bottom:26px; }
+  .skill-group:last-child{ margin-bottom:0; }
+  .skill-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px; color:var(--muted); letter-spacing:.04em;
+    margin-bottom:12px;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:9px; }
+  .chip{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    border:1px solid var(--line);
+    padding:6px 12px;
+    border-radius:3px;
+    background:var(--paper-raised);
+  }
+
+  /* footer */
+  footer{
+    border-top:1px solid var(--line);
+    padding:52px 0 40px;
+  }
+  .footer-grid{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    flex-wrap:wrap; gap:24px;
+  }
+  footer h2{
+    font-family:'Newsreader', serif; font-style:italic; font-weight:500;
+    font-size:1.7rem; margin:0 0 14px;
+  }
+  .footer-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px; color:var(--muted);
+  }
+  .footer-links{ display:flex; gap:16px; }
+
+  /* ---------- extra micro-interactions ---------- */
+  .progress-bar{
+    position:fixed; top:0; left:0; height:2px; width:0%;
+    background:linear-gradient(90deg, var(--amber), var(--cobalt));
+    z-index:50; transition:width .08s linear;
+  }
+
+  .spotlight{
+    position:fixed; top:0; left:0; width:420px; height:420px;
+    pointer-events:none; z-index:1; border-radius:50%;
+    background:radial-gradient(circle, rgba(168,114,31,.10) 0%, rgba(168,114,31,0) 70%);
+    transform:translate(-50%,-50%);
+    opacity:0; transition:opacity .3s ease;
+  }
+  .hero:hover .spotlight{ opacity:1; }
+
+  .btn{ position:relative; will-change:transform; }
+
+  .card{
+    position:relative; overflow:hidden;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    transform-style:preserve-3d;
+    will-change:transform;
+  }
+  .card:hover{
+    box-shadow:0 18px 40px -20px rgba(32,28,22,.35);
+    border-color:var(--amber-soft);
+  }
+  .card::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(220px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.5), transparent 60%);
+    opacity:0; transition:opacity .3s ease; pointer-events:none;
+  }
+  .card:hover::before{ opacity:1; }
+  .card h3, .card p, .card-tag{ position:relative; z-index:1; }
+
+  .chip{ transition:transform .18s ease, background .18s ease, border-color .18s ease; }
+  .chip:hover{ transform:translateY(-2px); background:var(--amber-soft); border-color:var(--amber); }
+
+  .hero-photo{ transition:transform .35s ease, box-shadow .35s ease; }
+  .hero-photo:hover{ transform:scale(1.04) rotate(-1deg); }
+
+  .word{ display:inline-block; opacity:0; transform:translateY(.4em); animation:wordIn .6s ease forwards; }
+  @keyframes wordIn{ to{ opacity:1; transform:translateY(0); } }
+
+  .brand-mark{ transition:transform .4s ease; }
+  .brand:hover .brand-mark{ transform:rotate(360deg); }
+
+  @media (prefers-reduced-motion: reduce){
+    .spotlight{ display:none; }
+    .card{ transform:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <div class="brand"><span class="brand-mark">S</span> Stephen Hoffmann</div>
+    <div class="navlinks">
+      <a href="#erfahrung" class="u-link">Erfahrung</a>
+      <a href="#projekte" class="u-link">Projekte</a>
+      <a href="#ausbildung" class="u-link">Ausbildung</a>
+      <a href="#kenntnisse" class="u-link">Kenntnisse</a>
+      <a href="#kontakt" class="u-link">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<div class="progress-bar" id="progressBar"></div>
+<header class="hero">
+  <div class="spotlight" id="spotlight"></div>
+  <div class="hero-content">
+    <div class="wrap hero-inner">
+      <div class="hero-grid">
+        <div class="hero-text">
+          <p class="eyebrow">Consumer Science · Daten · KI</p>
+          <h1 id="heroName">Stephen Hoffmann</h1>
+          <p class="hero-role">M.Sc. Consumer Science an der <strong>TUM</strong> &middot; Werkstudent bei der <strong>BMW Group</strong> &middot; München</p>
+          <p class="hero-thesis">Mich interessiert, wie Menschen Entscheidungen treffen und wie sich das in Daten zeigt. Bei BMW baue ich SQL-Dashboards und Pipelines. In eigenen Projekten verbinde ich das mit KI, von einem Verhandlungstraining bis zu einer Rennstrategie-Simulation.</p>
+          <div class="cta-row">
+            <a class="btn btn-solid" href="mailto:stephen.ernst.hoffmann@gmail.com">E-Mail schreiben</a>
+            <a class="btn btn-outline" href="https://linkedin.com/in/stephen-e-hoffmann" target="_blank" rel="noopener">LinkedIn</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="photo.webp" alt="Portrait von Stephen Hoffmann" width="158" height="158">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="section reveal" id="erfahrung">
+    <p class="eyebrow">Erfahrung</p>
+    <h2>Berufserfahrung</h2>
+
+    <div class="annotated">
+      <div>
+        <div class="role">
+          <div class="role-head">
+            <span class="role-title">BMW Group</span>
+            <span class="role-dates">03 / 2025 &ndash; heute</span>
+          </div>
+          <p class="role-sub">Praktikant &amp; Werkstudent, IT-Projektmanagement &middot; München</p>
+          <ul>
+            <li>SQL-Dashboards und ETL-Pipelines mit AWS Athena, Glue und QuickSight<sup class="ref">1</sup></li>
+            <li>Moderation agiler Workshops und Ceremonies zu Team-Kollaboration und Konfliktmanagement, auf Abteilungs- und Hauptabteilungsebene</li>
+          </ul>
+        </div>
+      </div>
+      <aside class="note"><b>1</b> &mdash; u.&nbsp;a. eine Pipeline, die Qualitätskennzahlen automatisiert als Parquet-Snapshots nach S3 schreibt, und neun einzelne Jira-Filter, die zu einer gemeinsamen Abfrage zusammengeführt wurden.</aside>
+    </div>
+
+    <p class="subhead">Weitere Stationen</p>
+    <ul class="timeline-compact">
+      <li>
+        <span class="tc-date">10/2023 &ndash; 12/2024</span>
+        <span class="tc-what"><b>Studentische Hilfskraft</b> &middot; Kompetenzzentrum Wachstums- &amp; Vertriebsstrategien, Hochschule Neu-Ulm <span class="tc-where">&middot; Neu-Ulm</span></span>
+      </li>
+      <li>
+        <span class="tc-date">03/2023 &ndash; 09/2023</span>
+        <span class="tc-what"><b>Praktikum</b> &middot; Learning &amp; Development, Team Connex <span class="tc-where">&middot; Holzgerlingen</span></span>
+      </li>
+      <li>
+        <span class="tc-date">07/2022 &ndash; 01/2023</span>
+        <span class="tc-what"><b>Werkstudent</b> &middot; Sales Representative (Social Recruiting), inga. <span class="tc-where">&middot; Frankfurt</span></span>
+      </li>
+      <li>
+        <span class="tc-date">11/2020 &ndash; 03/2022</span>
+        <span class="tc-what"><b>Werkstudent</b> &middot; Product Support Staff, Jobvalley (Studitemps) <span class="tc-where">&middot; Sindelfingen</span></span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section reveal" id="projekte">
+    <p class="eyebrow">Projekte</p>
+    <h2>Eigene Projekte</h2>
+    <div class="cards">
+      <div class="card">
+        <p class="card-tag">Bachelorarbeit &middot; Note 1,0</p>
+        <h3>Beat the Bot</h3>
+        <p>Ein KI-basiertes Verhandlungstraining für den Vertrieb. Vorgestellt auf der ISPIM-Konferenz in Osaka. Das daraus entstandene Paper &bdquo;Beyond Virtual Realities&ldquo; erhielt den Best Doctoral Paper Award bei der GSSI 2025.</p>
+      </div>
+      <div class="card">
+        <p class="card-tag">TUM Changemakers &middot; Team Squids</p>
+        <h3>LumenSleep</h3>
+        <p>Ein Projekt zu künstlichem Licht in der Nacht und seiner Wirkung auf den Schlaf. Grundlage waren eine eigene Umfrage mit 36 Teilnehmenden und aktuelle Forschung, u.&nbsp;a. eine große Kohortenstudie aus JAMA Network Open.</p>
+      </div>
+      <div class="card">
+        <p class="card-tag">TUM Team Analytics</p>
+        <h3>McQueen Racing</h3>
+        <p>Ein Machine-Learning-Modell mit Gradient Boosting, das Fahrzeug-Setup und Rennstrategie für ein simuliertes Rennteam optimiert.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="ausbildung">
+    <p class="eyebrow">Ausbildung</p>
+    <h2>Ausbildung</h2>
+    <div>
+      <div class="edu-row">
+        <div class="edu-left">
+          <b>Technische Universität München</b>
+          <div class="edu-sub">Consumer Science &middot; Master of Science (M.Sc.) &middot; München</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-dates">10/2025 &ndash; 08/2027</div>
+          <div class="edu-grade">Ø 1,5</div>
+        </div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-left">
+          <b>Korea University</b>
+          <div class="edu-sub">Auslandssemester &middot; Political Science &amp; Economics &middot; Seoul</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-dates">08/2024 &ndash; 12/2024</div>
+          <div class="edu-grade">Ø 1,8</div>
+        </div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-left">
+          <b>Hochschule Neu-Ulm</b>
+          <div class="edu-sub">Wirtschaftspsychologie &middot; Bachelor of Science (B.Sc.) &middot; Neu-Ulm</div>
+        </div>
+        <div class="edu-right">
+          <div class="edu-dates">03/2021 &ndash; 02/2025</div>
+          <div class="edu-grade">Ø 1,4 &middot; Top 10%</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal" id="kenntnisse">
+    <p class="eyebrow">Kenntnisse</p>
+    <h2>Kenntnisse</h2>
+
+    <div class="skill-group">
+      <p class="skill-label">Daten &amp; Cloud</p>
+      <div class="chips">
+        <span class="chip">SQL</span>
+        <span class="chip">Python</span>
+        <span class="chip">R (RStudio)</span>
+        <span class="chip">AWS Athena</span>
+        <span class="chip">AWS Glue</span>
+        <span class="chip">QuickSight</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-label">KI &amp; Tools</p>
+      <div class="chips">
+        <span class="chip">Claude Code</span>
+        <span class="chip">Codex</span>
+        <span class="chip">n8n</span>
+        <span class="chip">Cursor</span>
+        <span class="chip">Notion</span>
+        <span class="chip">Confluence</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <p class="skill-label">Sprachen</p>
+      <div class="chips">
+        <span class="chip">Deutsch &middot; Muttersprache</span>
+        <span class="chip">Englisch &middot; C1</span>
+        <span class="chip">Spanisch &middot; B1</span>
+        <span class="chip">Koreanisch &middot; A1</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="kontakt">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h2>Lass uns reden.</h2>
+        <div class="footer-links">
+          <a class="u-link" href="mailto:stephen.ernst.hoffmann@gmail.com">stephen.ernst.hoffmann@gmail.com</a>
+          <a class="u-link" href="https://linkedin.com/in/stephen-e-hoffmann" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="footer-meta">München &middot; <span id="year"></span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var topbar = document.getElementById('topbar');
+  var onScroll = function(){
+    if (window.scrollY > 40) topbar.classList.add('scrolled');
+    else topbar.classList.remove('scrolled');
+  };
+  document.addEventListener('scroll', onScroll, { passive:true });
+  onScroll();
+
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Scroll progress bar
+  var progressBar = document.getElementById('progressBar');
+  var onProgress = function(){
+    var h = document.documentElement;
+    var scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progressBar.style.width = scrolled + '%';
+  };
+  document.addEventListener('scroll', onProgress, { passive:true });
+  onProgress();
+
+  // Staggered word reveal for hero name
+  if (!reduced) {
+    var heroName = document.getElementById('heroName');
+    var text = heroName.textContent;
+    heroName.innerHTML = text.split(' ').map(function(w, i){
+      return '<span class="word" style="animation-delay:' + (0.15 + i * 0.09) + 's">' + w + '</span>';
+    }).join(' ');
+  }
+
+  // Cursor spotlight following mouse inside hero
+  var spotlight = document.getElementById('spotlight');
+  var hero = document.querySelector('.hero');
+  if (!reduced && hero) {
+    hero.addEventListener('mousemove', function(e){
+      spotlight.style.left = e.clientX + 'px';
+      spotlight.style.top = e.clientY + 'px';
+    });
+  }
+
+  // Magnetic buttons
+  if (!reduced) {
+    document.querySelectorAll('.btn').forEach(function(btn){
+      btn.addEventListener('mousemove', function(e){
+        var r = btn.getBoundingClientRect();
+        var x = e.clientX - r.left - r.width / 2;
+        var y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = 'translate(' + (x * 0.25) + 'px,' + (y * 0.35) + 'px)';
+      });
+      btn.addEventListener('mouseleave', function(){
+        btn.style.transform = 'translate(0,0)';
+      });
+    });
+  }
+
+  // Tilt + glare on cards
+  if (!reduced) {
+    document.querySelectorAll('.card').forEach(function(card){
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width;
+        var py = (e.clientY - r.top) / r.height;
+        var rotX = (0.5 - py) * 8;
+        var rotY = (px - 0.5) * 10;
+        card.style.transform = 'perspective(700px) rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) translateY(-4px)';
+        card.style.setProperty('--mx', (px * 100) + '%');
+        card.style.setProperty('--my', (py * 100) + '%');
+      });
+      card.addEventListener('mouseleave', function(){
+        card.style.transform = 'perspective(700px) rotateX(0) rotateY(0) translateY(0)';
+      });
+    });
+  }
+
+  var reveals = document.querySelectorAll('.reveal');
+  if (reduced || !('IntersectionObserver' in window)) {
+    reveals.forEach(function(el){ el.classList.add('visible'); });
+  } else {
+    var obs = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.12 });
+    reveals.forEach(function(el){ obs.observe(el); });
+  }
+</script>
+
+</body>
+</html>
