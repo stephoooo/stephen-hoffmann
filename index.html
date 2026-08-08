@@ -418,6 +418,56 @@
     .spotlight{ display:none; }
     .card{ transform:none !important; }
   }
+
+  /* ---------- detail accordions ---------- */
+  details.more{
+    margin-top:10px;
+    border-top:1px dashed var(--line);
+    padding-top:10px;
+  }
+  details.more summary{
+    cursor:pointer;
+    list-style:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    color:var(--cobalt);
+    display:flex; align-items:center; gap:6px;
+    -webkit-user-select:none; user-select:none;
+  }
+  details.more summary::-webkit-details-marker{ display:none; }
+  details.more summary::before{
+    content:"+";
+    display:inline-flex; align-items:center; justify-content:center;
+    width:16px; height:16px;
+    border:1px solid var(--cobalt);
+    border-radius:2px;
+    font-size:12px;
+    transition:transform .25s ease;
+  }
+  details.more[open] summary::before{ content:"\2212"; transform:rotate(180deg); }
+  details.more .more-body{
+    font-size:14px;
+    color:var(--muted);
+    padding-top:12px;
+    animation:detailIn .35s ease;
+  }
+  @keyframes detailIn{ from{ opacity:0; transform:translateY(-4px);} to{ opacity:1; transform:translateY(0);} }
+  details.more .more-body ul{ margin:0; padding-left:18px; }
+  details.more .more-body li{ margin-bottom:5px; }
+  details.more .more-body li::marker{ color:var(--amber); }
+  details.more .more-body p{ margin:0 0 10px; }
+  details.more .more-body p:last-child{ margin-bottom:0; }
+  details.more .quote{
+    font-family:'Newsreader', serif; font-style:italic; color:var(--ink);
+    border-left:2px solid var(--amber-soft); padding-left:12px; margin:10px 0;
+  }
+
+  .module-table{ width:100%; border-collapse:collapse; margin-top:10px; font-size:13.5px; }
+  .module-table th, .module-table td{ text-align:left; padding:7px 10px 7px 0; border-bottom:1px solid var(--line); }
+  .module-table th{ font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); font-weight:500; }
+  .module-table td.grade{ font-family:'IBM Plex Mono', monospace; color:var(--amber); white-space:nowrap; }
 </style>
 </head>
 <body>
@@ -429,6 +479,7 @@
       <a href="#erfahrung" class="u-link">Erfahrung</a>
       <a href="#projekte" class="u-link">Projekte</a>
       <a href="#ausbildung" class="u-link">Ausbildung</a>
+      <a href="#engagement" class="u-link">Engagement</a>
       <a href="#kenntnisse" class="u-link">Kenntnisse</a>
       <a href="#kontakt" class="u-link">Kontakt</a>
     </div>
@@ -486,15 +537,58 @@
     <ul class="timeline-compact">
       <li>
         <span class="tc-date">10/2023 &ndash; 12/2024</span>
-        <span class="tc-what"><b>Studentische Hilfskraft</b> &middot; Kompetenzzentrum Wachstums- &amp; Vertriebsstrategien, Hochschule Neu-Ulm <span class="tc-where">&middot; Neu-Ulm</span></span>
+        <span class="tc-what">
+          <b>Studentische Hilfskraft</b> &middot; Kompetenzzentrum Wachstums- &amp; Vertriebsstrategien, Hochschule Neu-Ulm <span class="tc-where">&middot; Neu-Ulm</span>
+          <details class="more">
+            <summary>Mehr Details</summary>
+            <div class="more-body">
+              <p>Mitwirkung am KI/VR-Verhandlungsexperiment &bdquo;Beat the Bot&ldquo; &mdash; von Experten-Interviews über Wettbewerbsanalyse KI-basierter Trainingstools bis zur qualitativen Datenauswertung mit MAXQDA.</p>
+              <ul>
+                <li>Mitautor der wissenschaftlichen Publikation &bdquo;Enhancing Sales Training with VR and AI: A Jobs-to-be-Done-Theory-Approach&ldquo;</li>
+                <li>Mitwirkung im gesamten Veröffentlichungsprozess von Journal-Einreichungen sowie an Feldstudien und Datenerhebungen</li>
+                <li>Aufbau und Betreuung eines TikTok-Kanals für die Hochschule Neu-Ulm inkl. Konzept, Dreh und Schnitt der Videos</li>
+                <li>Entwicklung und Umsetzung der Marketing-Kampagne für den Masterstudiengang &bdquo;Advanced Sales Management and Intelligence&ldquo;</li>
+              </ul>
+              <p class="quote">&bdquo;Herr Hoffmann hat durch seine hohe fachliche Kompetenz und sein kreatives Denken beeindruckt&hellip; Wir empfehlen Herrn Hoffmann uneingeschränkt weiter.&ldquo;</p>
+              <p>&mdash; Prof. Dr. Barbara Dannemann, Kompetenzzentrum Wachstums- &amp; Vertriebsstrategien</p>
+            </div>
+          </details>
+        </span>
       </li>
       <li>
         <span class="tc-date">03/2023 &ndash; 09/2023</span>
-        <span class="tc-what"><b>Praktikum</b> &middot; Learning &amp; Development, Team Connex <span class="tc-where">&middot; Holzgerlingen</span></span>
+        <span class="tc-what">
+          <b>Praktikum</b> &middot; Learning &amp; Development, Team Connex <span class="tc-where">&middot; Holzgerlingen</span>
+          <details class="more">
+            <summary>Mehr Details</summary>
+            <div class="more-body">
+              <ul>
+                <li>Mediale und didaktische Gestaltung interaktiver Live-Online-Trainings, inkl. technischer Moderation</li>
+                <li>Entwicklung von Analyseinstrumenten für die Persönlichkeitsentwicklung</li>
+                <li>Kundenmanagement bei Vor- und Nachbereitung von Seminaren sowie Erstellung von Web Based Trainings</li>
+              </ul>
+              <p class="quote">&bdquo;Er erledigte sämtliche Tätigkeiten eigenständig, zügig und mit hoher Eigenmotivation.&ldquo;</p>
+              <p>&mdash; Marie Meiners, Geschäftsführende Gesellschafterin, TEAM CONNEX GmbH</p>
+            </div>
+          </details>
+        </span>
       </li>
       <li>
         <span class="tc-date">07/2022 &ndash; 01/2023</span>
-        <span class="tc-what"><b>Werkstudent</b> &middot; Sales Representative (Social Recruiting), inga. <span class="tc-where">&middot; Frankfurt</span></span>
+        <span class="tc-what">
+          <b>Werkstudent</b> &middot; Sales Representative (Social Recruiting), inga. <span class="tc-where">&middot; Frankfurt</span>
+          <details class="more">
+            <summary>Mehr Details</summary>
+            <div class="more-body">
+              <ul>
+                <li>Bedarfsanalyse und Prospecting bei Zielunternehmen, aktive Ansprache per Mail, Cold Calling, LinkedIn und Xing</li>
+                <li>Telefonische Erstgespräche (Inbound &amp; Outbound) und Pipeline-Management per HubSpot CRM</li>
+              </ul>
+              <p class="quote">&bdquo;Er verfolgt die vereinbarten Ziele nachhaltig und mit höchstem Erfolg.&ldquo;</p>
+              <p>&mdash; Corinna Haas, Geschäftsführerin, Inga GmbH</p>
+            </div>
+          </details>
+        </span>
       </li>
       <li>
         <span class="tc-date">11/2020 &ndash; 03/2022</span>
@@ -529,37 +623,112 @@
     <p class="eyebrow">Ausbildung</p>
     <h2>Ausbildung</h2>
     <div>
-      <div class="edu-row">
-        <div class="edu-left">
-          <b>Technische Universität München</b>
-          <div class="edu-sub">Consumer Science &middot; Master of Science (M.Sc.) &middot; München</div>
+      <div>
+        <div class="edu-row">
+          <div class="edu-left">
+            <b>Technische Universität München</b>
+            <div class="edu-sub">Consumer Science &middot; Master of Science (M.Sc.) &middot; München</div>
+          </div>
+          <div class="edu-right">
+            <div class="edu-dates">10/2025 &ndash; 08/2027</div>
+            <div class="edu-grade">Ø 1,5</div>
+          </div>
         </div>
-        <div class="edu-right">
-          <div class="edu-dates">10/2025 &ndash; 08/2027</div>
-          <div class="edu-grade">Ø 1,5</div>
+        <details class="more">
+          <summary>Modulnoten anzeigen (39 Credits)</summary>
+          <div class="more-body">
+            <table class="module-table">
+              <thead><tr><th>Modul</th><th>Note</th><th>Credits</th></tr></thead>
+              <tbody>
+                <tr><td>Empirical Research in Economics and Management</td><td class="grade">1,0</td><td>6</td></tr>
+                <tr><td>Introduction to Statistics Using R</td><td class="grade">1,0</td><td>6</td></tr>
+                <tr><td>Qualitative and Quantitative Methods in Consumer Research</td><td class="grade">1,3</td><td>6</td></tr>
+                <tr><td>Sponsorship-linked Marketing</td><td class="grade">1,3</td><td>6</td></tr>
+                <tr><td>Applied Strategy and Organization: Strategies for international Corporations</td><td class="grade">2,0</td><td>3</td></tr>
+                <tr><td>Strategies in MNEs</td><td class="grade">2,0</td><td>6</td></tr>
+                <tr><td>Consumer Behavior</td><td class="grade">2,3</td><td>6</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </details>
+      </div>
+      <div>
+        <div class="edu-row">
+          <div class="edu-left">
+            <b>Korea University</b>
+            <div class="edu-sub">Auslandssemester &middot; Political Science &amp; Economics &middot; Seoul</div>
+          </div>
+          <div class="edu-right">
+            <div class="edu-dates">08/2024 &ndash; 12/2024</div>
+            <div class="edu-grade">Ø 1,8</div>
+          </div>
         </div>
       </div>
-      <div class="edu-row">
-        <div class="edu-left">
-          <b>Korea University</b>
-          <div class="edu-sub">Auslandssemester &middot; Political Science &amp; Economics &middot; Seoul</div>
+      <div>
+        <div class="edu-row">
+          <div class="edu-left">
+            <b>Hochschule Neu-Ulm</b>
+            <div class="edu-sub">Wirtschaftspsychologie &middot; Bachelor of Science (B.Sc.) &middot; Neu-Ulm</div>
+          </div>
+          <div class="edu-right">
+            <div class="edu-dates">03/2021 &ndash; 02/2025</div>
+            <div class="edu-grade">Ø 1,4 &middot; Top 10%</div>
+          </div>
         </div>
-        <div class="edu-right">
-          <div class="edu-dates">08/2024 &ndash; 12/2024</div>
-          <div class="edu-grade">Ø 1,8</div>
-        </div>
-      </div>
-      <div class="edu-row">
-        <div class="edu-left">
-          <b>Hochschule Neu-Ulm</b>
-          <div class="edu-sub">Wirtschaftspsychologie &middot; Bachelor of Science (B.Sc.) &middot; Neu-Ulm</div>
-        </div>
-        <div class="edu-right">
-          <div class="edu-dates">03/2021 &ndash; 02/2025</div>
-          <div class="edu-grade">Ø 1,4 &middot; Top 10%</div>
-        </div>
+        <details class="more">
+          <summary>Schwerpunkte &amp; Highlights anzeigen</summary>
+          <div class="more-body">
+            <p><b style="color:var(--ink)">Schwerpunkt Strategic Market Intelligence</b> (15 ECTS, Ø 1,0) &mdash; Marktforschungsbasics &amp; -seminare</p>
+            <p><b style="color:var(--ink)">Schwerpunkt Kommunikationspsychologie &amp; Konfliktmanagement</b> (15 ECTS, Ø 1,1) &mdash; Gesprächsführung, Umgang mit Vorurteilen &amp; Konflikten</p>
+            <p><b style="color:var(--ink)">Internationaler Schwerpunkt</b> an der Korea University (16 ECTS, Ø 1,8) &mdash; Financial Management (1,5), Investments (2,0), Korean Speaking for Beginners (2,0)</p>
+            <p><b style="color:var(--ink)">Bachelorarbeit</b> &bdquo;Digitale Transformation im Vertrieb&ldquo; &mdash; Note 1,0, inkl. Bachelorseminar (1,0)</p>
+            <p>Weitere Bestnoten: Forschungsmethoden (1,0), Informationsmanagement &amp; Programmierung (1,0), Sozialpsychologie (1,3)</p>
+          </div>
+        </details>
       </div>
     </div>
+  </section>
+
+  <section class="section reveal" id="engagement">
+    <p class="eyebrow">Engagement</p>
+    <h2>Ehrenamt &amp; Engagement</h2>
+    <ul class="timeline-compact">
+      <li>
+        <span class="tc-date">03/2022 &ndash; 02/2025</span>
+        <span class="tc-what">
+          <b>Studierendenvertretung</b> &middot; Hochschule Neu-Ulm <span class="tc-where">&middot; Neu-Ulm</span>
+          <details class="more">
+            <summary>Mehr Details</summary>
+            <div class="more-body">
+              <ul>
+                <li>Gründung &amp; Leitung des Referats &bdquo;Sport&ldquo; (10/2023&ndash;10/2024) &mdash; u.&nbsp;a. Organisation eines Marathons für Studierende</li>
+                <li>Referat &bdquo;Veranstaltungen&ldquo; &mdash; Semester Opening/Closing Party, Festivals, Bier-Pong-Turniere, Weihnachtsmarkt</li>
+                <li>Referat &bdquo;Gesunde Hochschule&ldquo; &mdash; Gesundheitstage &amp; Blutspende-Aktionen</li>
+                <li>Einführung von Trello &amp; Notion als Management-Tools inkl. Schulung neuer Mitglieder</li>
+                <li>Entwicklung eines Onboarding-Konzepts für neue Anwärter</li>
+              </ul>
+              <p class="quote">&bdquo;Durch sein überaus systematisches Vorgehen und seinen sehr kooperativen Führungsstil konnte er seine Projekte stets zu unserer äußersten Zufriedenheit abschließen.&ldquo;</p>
+            </div>
+          </details>
+        </span>
+      </li>
+      <li>
+        <span class="tc-date">10/2023 &ndash; 07/2024</span>
+        <span class="tc-what">
+          <b>Lokale Erasmus+ Initiative</b> &middot; Hochschule Neu-Ulm <span class="tc-where">&middot; Neu-Ulm</span>
+          <details class="more">
+            <summary>Mehr Details</summary>
+            <div class="more-body">
+              <p>Beratung deutscher Studierender vor Erasmus-Aufenthalten und Betreuung internationaler Gaststudierender &mdash; Aufbau &amp; Etablierung der Initiative, Planung und Durchführung von Veranstaltungen. Gefördert vom DAAD im Auftrag des Bundesministeriums für Bildung und Forschung.</p>
+            </div>
+          </details>
+        </span>
+      </li>
+      <li>
+        <span class="tc-date">08/2025 &ndash; heute</span>
+        <span class="tc-what"><b>Freiwillige Hilfskraft</b> &middot; Ecclesia Kirche <span class="tc-where">&middot; München</span></span>
+      </li>
+    </ul>
   </section>
 
   <section class="section reveal" id="kenntnisse">
