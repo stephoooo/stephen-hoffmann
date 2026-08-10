@@ -3,26 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stephen Hoffmann — Consumer Science &amp; Data</title>
-<meta name="description" content="Stephen Hoffmann — Consumer Science M.Sc. an der TUM, Werkstudent Data & IT-Projektmanagement bei der BMW Group. Verhalten, Daten, KI.">
+<title>Stephen Hoffmann</title>
+<meta name="description" content="Stephen Hoffmann. Consumer Science M.Sc. an der TUM, Werkstudent Data & IT-Projektmanagement bei der BMW Group.">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231B211D'/%3E%3Ctext x='32' y='41' font-family='monospace' font-weight='700' font-size='24' fill='%23E9ECE4' text-anchor='middle'%3ESH%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23121210'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23FAF9F5' text-anchor='middle'%3ESH%3C/text%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&family=Source+Serif+4:ital,wght@1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <style>
   :root{
-    --paper:#E9ECE4;
-    --paper-raised:#F2F4EE;
-    --ink:#1B211D;
-    --muted:#5C6459;
-    --line:#C6CDBD;
-    --signal:#2E6659;
-    --signal-soft:#CFE0D6;
-    --flag:#B8542A;
-    --flag-soft:#EAD3C4;
+    --ink:#121210;
+    --ink-2:#1C1B17;
+    --paper:#FAF9F5;
+    --paper-2:#F1EFE8;
+    --line-dark:#38372F;
+    --line-light:#DEDCD2;
+    --text-on-dark:#F5F3EC;
+    --text-on-light:#151410;
+    --muted-on-dark:#9C9A8D;
+    --muted-on-light:#6B695F;
+    --accent:#C1391F;
+    --accent-soft:#E7C3B7;
     --max:760px;
     --note:240px;
     --gap:56px;
@@ -32,24 +35,24 @@
   html{scroll-behavior:smooth;}
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
-    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
   }
 
   body{
     margin:0;
     background:var(--paper);
-    color:var(--ink);
-    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    color:var(--text-on-light);
+    font-family:'Inter Tight', system-ui, sans-serif;
     font-size:17px;
     line-height:1.6;
     -webkit-font-smoothing:antialiased;
   }
 
-  ::selection{background:var(--signal-soft); color:var(--ink);}
+  ::selection{ background:var(--accent-soft); color:var(--ink); }
 
-  a{color:var(--signal); text-decoration:none;}
+  a{ color:inherit; text-decoration:none; }
   .u-link{
-    background-image:linear-gradient(var(--flag), var(--flag));
+    background-image:linear-gradient(currentColor, currentColor);
     background-position:0 100%;
     background-repeat:no-repeat;
     background-size:0% 1px;
@@ -59,338 +62,234 @@
   .u-link:hover, .u-link:focus-visible{ background-size:100% 1px; }
 
   a:focus-visible, button:focus-visible, summary:focus-visible{
-    outline:2px solid var(--signal);
+    outline:2px solid var(--accent);
     outline-offset:3px;
     border-radius:2px;
   }
 
   .wrap{ max-width:960px; margin:0 auto; padding:0 28px; }
 
+  .section-dark{ background:var(--ink); color:var(--text-on-dark); }
+  .section-dark .muted{ color:var(--muted-on-dark); }
+  .section-light .muted{ color:var(--muted-on-light); }
+
   .eyebrow{
     font-family:'IBM Plex Mono', monospace;
     font-size:12.5px;
-    letter-spacing:.12em;
+    letter-spacing:.14em;
     text-transform:uppercase;
-    color:var(--flag);
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin:0 0 14px;
+    color:var(--accent);
+    display:flex; align-items:center; gap:8px;
+    margin:0 0 16px;
   }
-  .eyebrow::before{
-    content:"";
-    width:7px; height:7px;
-    background:var(--flag);
-    display:inline-block;
-  }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--accent); display:inline-block; }
+
+  h1, h2, h3{ font-family:'Fraunces', serif; font-weight:500; margin:0; }
 
   /* ---------- Nav ---------- */
   .topbar{
-    position:sticky; top:0; z-index:20;
+    position:sticky; top:0; z-index:30;
     display:flex; align-items:center; justify-content:space-between;
-    padding:16px 28px;
-    background:rgba(233,236,228,0);
+    padding:18px 28px;
+    background:rgba(18,18,16,0);
     border-bottom:1px solid transparent;
-    transition:background .3s ease, border-color .3s ease, box-shadow .3s ease;
+    transition:background .3s ease, border-color .3s ease;
+    color:var(--text-on-dark);
   }
   .topbar.scrolled{
-    background:rgba(233,236,228,.94);
+    background:rgba(18,18,16,.92);
     backdrop-filter:blur(6px);
-    border-bottom-color:var(--line);
-    box-shadow:0 4px 18px -12px rgba(27,33,29,.35);
+    border-bottom-color:var(--line-dark);
   }
-  .topbar-inner{
-    max-width:960px; margin:0 auto; width:100%;
-    display:flex; align-items:center; justify-content:space-between;
-  }
-  .brand{
-    display:flex; align-items:center; gap:10px;
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:600;
-    font-size:15px;
-    color:var(--ink);
-  }
-  .brand-mark{
-    width:24px; height:24px;
-    background:var(--ink);
-    color:var(--paper);
-    display:flex; align-items:center; justify-content:center;
-    font-family:'IBM Plex Mono', monospace;
-    font-weight:600;
-    font-size:12px;
-    flex-shrink:0;
-  }
-  .navlinks{
-    display:flex; gap:26px;
-    font-family:'IBM Plex Mono', monospace;
-    font-size:13px;
-    letter-spacing:.02em;
-  }
-  .navlinks a{ color:var(--muted); }
-  .navlinks a:hover{ color:var(--ink); }
-  @media (max-width:640px){
-    .navlinks{ display:none; }
-  }
+  .topbar-inner{ max-width:960px; margin:0 auto; width:100%; display:flex; align-items:center; justify-content:space-between; }
+  .brand{ font-family:'Fraunces', serif; font-weight:500; font-size:16px; letter-spacing:.01em; }
+  .navlinks{ display:flex; gap:26px; font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.02em; }
+  .navlinks a{ color:var(--muted-on-dark); transition:color .18s ease; }
+  .navlinks a:hover{ color:var(--text-on-dark); }
+  @media (max-width:640px){ .navlinks{ display:none; } }
+
+  .progress-bar{ position:fixed; top:0; left:0; height:2px; width:0%; background:var(--accent); z-index:50; transition:width .08s linear; }
 
   /* ---------- Hero ---------- */
-  .hero{ padding:64px 0 56px; position:relative; }
-  .hero-inner{
-    opacity:0; transform:translateY(14px);
-    animation:heroIn .7s ease forwards .1s;
+  .hero{ position:relative; padding:76px 0 0; overflow:hidden; }
+  .hero-glow{
+    position:absolute; inset:0; pointer-events:none;
+    background:radial-gradient(480px circle at var(--gx,70%) var(--gy,20%), rgba(193,57,31,.16), transparent 65%);
+    transition:opacity .4s ease; opacity:0;
   }
+  .hero:hover .hero-glow{ opacity:1; }
+
+  .hero-inner{ position:relative; opacity:0; transform:translateY(16px); animation:heroIn .8s ease forwards .1s; }
   @keyframes heroIn{ to{ opacity:1; transform:translateY(0);} }
 
-  .hero-grid{
-    display:grid;
-    grid-template-columns:26px 1fr auto;
-    gap:0 32px;
-    align-items:start;
-  }
-  .hero-rail{
-    writing-mode:vertical-rl;
-    transform:rotate(180deg);
-    font-family:'IBM Plex Mono', monospace;
-    font-size:11px;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--muted);
-    white-space:nowrap;
-    padding-top:6px;
-    border-right:1px solid var(--line);
-    padding-right:12px;
-  }
-  .hero-rail b{ color:var(--flag); }
-
-  h1{
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:700;
-    font-size:clamp(2.5rem, 6vw, 4rem);
-    line-height:.98;
+  h1.name{
+    font-size:clamp(3.2rem, 9vw, 6.2rem);
+    line-height:.94;
     letter-spacing:-.02em;
-    margin:0 0 18px;
+    margin:0 0 28px;
   }
-  .hero-role{
-    font-size:16px;
-    color:var(--muted);
-    margin:0 0 26px;
-    max-width:520px;
-  }
-  .hero-role strong{ color:var(--ink); font-weight:600; }
+  h1.name .line{ display:block; overflow:hidden; }
+  h1.name .word{ display:inline-block; transform:translateY(105%); animation:wordUp .8s cubic-bezier(.22,1,.36,1) forwards; }
+
+  @keyframes wordUp{ to{ transform:translateY(0); } }
+
+  .hero-role{ font-size:16px; color:var(--muted-on-dark); max-width:520px; margin:0 0 26px; }
+  .hero-role strong{ color:var(--text-on-dark); font-weight:600; }
 
   .hero-thesis{
-    font-family:'Source Serif 4', serif;
-    font-style:italic;
-    font-size:clamp(1.1rem, 2.2vw, 1.32rem);
-    line-height:1.55;
-    max-width:600px;
-    color:var(--ink);
-    margin:0 0 34px;
+    font-family:'Fraunces', serif; font-style:italic; font-weight:400;
+    font-size:clamp(1.15rem, 2.3vw, 1.4rem);
+    line-height:1.5; max-width:600px; margin:0 0 38px;
   }
 
-  .hero-photo{
-    width:156px; height:196px;
-    position:relative;
-    flex-shrink:0;
-    margin-top:2px;
-  }
-  .hero-photo img{
-    width:100%; height:100%; object-fit:cover; display:block;
-    filter:grayscale(.25) contrast(1.03);
-  }
-  .hero-photo::before, .hero-photo::after,
-  .hero-photo .cbl, .hero-photo .cbr{
-    content:""; position:absolute; width:14px; height:14px;
-    pointer-events:none;
-  }
-  .hero-photo::before{ top:-6px; left:-6px; border-top:2px solid var(--ink); border-left:2px solid var(--ink); }
-  .hero-photo::after{ bottom:-6px; right:-6px; border-bottom:2px solid var(--ink); border-right:2px solid var(--ink); }
-  .hero-photo .cbl{ top:-6px; right:-6px; border-top:2px solid var(--ink); border-right:2px solid var(--ink); }
-  .hero-photo .cbr{ bottom:-6px; left:-6px; border-bottom:2px solid var(--ink); border-left:2px solid var(--ink); }
-  .hero-photo-cap{
-    position:absolute; left:0; bottom:-24px;
-    font-family:'IBM Plex Mono', monospace; font-size:10px; letter-spacing:.06em;
-    color:var(--muted); white-space:nowrap;
-  }
-
-  @media (max-width:720px){
-    .hero-grid{ grid-template-columns:1fr; }
-    .hero-rail{ display:none; }
-    .hero-grid{ display:flex; flex-direction:column-reverse; gap:28px; }
-    .hero-photo{ width:120px; height:150px; }
-    .hero-role, .hero-thesis{ max-width:none; }
-  }
-
-  .cta-row{ display:flex; gap:12px; flex-wrap:wrap; }
+  .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin-bottom:56px; }
   .btn{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:13.5px;
-    letter-spacing:.02em;
-    padding:12px 20px;
-    border-radius:2px;
+    position:relative; will-change:transform;
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; letter-spacing:.02em;
+    padding:13px 22px; border-radius:2px;
     display:inline-flex; align-items:center; gap:8px;
     transition:background .18s ease, color .18s ease, border-color .18s ease;
   }
-  .btn-solid{ background:var(--ink); color:var(--paper); border:1px solid var(--ink); }
-  .btn-solid:hover{ background:var(--signal); border-color:var(--signal); }
-  .btn-outline{ border:1px solid var(--ink); color:var(--ink); }
-  .btn-outline:hover{ border-color:var(--signal); color:var(--signal); }
+  .btn-solid{ background:var(--text-on-dark); color:var(--ink); border:1px solid var(--text-on-dark); }
+  .btn-solid:hover{ background:var(--accent); border-color:var(--accent); color:var(--text-on-dark); }
+  .btn-outline{ border:1px solid var(--line-dark); color:var(--text-on-dark); }
+  .btn-outline:hover{ border-color:var(--accent); color:var(--accent); }
 
-  /* ---------- Sections ---------- */
-  .section{ padding:60px 0; border-top:1px solid var(--line); }
-  .section h2{
-    font-family:'Space Grotesk', sans-serif;
-    font-weight:600;
-    font-size:clamp(1.6rem, 3.2vw, 2rem);
-    letter-spacing:-.01em;
-    margin:0 0 32px;
+  .hero-photo-band{ position:relative; display:flex; justify-content:flex-end; }
+  .hero-photo{
+    width:min(360px, 46vw); aspect-ratio:3/4; position:relative;
+    margin-bottom:-64px; margin-right:4%;
+  }
+  .hero-photo img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1) contrast(1.05); }
+  .hero-photo::before, .hero-photo::after{ content:""; position:absolute; width:18px; height:18px; }
+  .hero-photo::before{ top:-8px; left:-8px; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
+  .hero-photo::after{ bottom:-8px; right:-8px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }
+
+  @media (max-width:720px){
+    .hero-photo{ width:56vw; margin-right:0; margin-bottom:-40px; }
   }
 
-  .reveal{ opacity:0; transform:translateY(16px); transition:opacity .6s ease, transform .6s ease; }
+  /* ---------- Sections ---------- */
+  .section{ padding:72px 0; border-top:1px solid var(--line-light); }
+  .section-dark{ border-top-color:var(--line-dark); }
+  .section h2{ font-size:clamp(1.7rem, 3.2vw, 2.15rem); letter-spacing:-.01em; margin:0 0 36px; }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
   .reveal.visible{ opacity:1; transform:translateY(0); }
 
   .annotated{ display:grid; grid-template-columns:1fr; column-gap:var(--gap); row-gap:10px; }
-  @media (min-width:1040px){
-    .annotated{ grid-template-columns:minmax(0,var(--max)) var(--note); }
-  }
+  @media (min-width:1040px){ .annotated{ grid-template-columns:minmax(0,var(--max)) var(--note); } }
   .note{
-    font-family:'IBM Plex Mono', monospace;
-    font-size:12.5px;
-    line-height:1.65;
-    color:var(--muted);
-    border-left:2px solid var(--flag-soft);
-    padding-left:14px;
-    margin:2px 0 18px;
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; line-height:1.65;
+    border-left:2px solid var(--accent-soft); padding-left:14px; margin:2px 0 18px;
   }
   @media (min-width:1040px){ .note{ margin:3px 0 0; } }
-  .note b{ color:var(--ink); font-weight:500; }
+  .note b{ font-weight:600; }
 
-  sup.ref{ font-family:'IBM Plex Mono', monospace; color:var(--flag); font-size:.68em; margin-left:1px; }
+  sup.ref{ font-family:'IBM Plex Mono', monospace; color:var(--accent); font-size:.65em; margin-left:1px; }
 
-  /* experience */
-  .role{ margin-bottom:42px; }
+  .role{ margin-bottom:44px; }
   .role:last-child{ margin-bottom:0; }
   .role-head{ display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap; }
-  .role-title{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.1rem; }
-  .role-dates{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted); white-space:nowrap; }
-  .role-sub{ color:var(--muted); font-size:14.5px; margin:3px 0 12px; }
+  .role-title{ font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem; }
+  .role-dates{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; white-space:nowrap; }
+  .role-sub{ font-size:14.5px; margin:4px 0 14px; }
   .role ul{ margin:0; padding-left:18px; }
-  .role li{ margin-bottom:6px; }
-  .role li::marker{ color:var(--flag); }
+  .role li{ margin-bottom:7px; }
+  .role li::marker{ color:var(--accent); }
 
   .timeline-compact{ list-style:none; margin:0; padding:0; max-width:var(--max); }
-  .timeline-compact li{ display:flex; gap:18px; padding:14px 0; border-top:1px solid var(--line); font-size:14.5px; }
+  .timeline-compact li{ display:flex; gap:18px; padding:16px 0; border-top:1px solid var(--line-light); font-size:14.5px; }
+  .section-dark .timeline-compact li{ border-top-color:var(--line-dark); }
   .timeline-compact li:first-child{ border-top:none; }
-  .tc-date{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted); width:128px; flex-shrink:0; padding-top:2px; }
+  .tc-date{ font-family:'IBM Plex Mono', monospace; font-size:12px; width:128px; flex-shrink:0; padding-top:2px; }
   .tc-what b{ font-weight:600; }
-  .tc-where{ color:var(--muted); }
 
-  .subhead{
-    font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.08em;
-    text-transform:uppercase; color:var(--muted); margin:44px 0 16px;
-  }
+  .subhead{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.08em; text-transform:uppercase; margin:48px 0 16px; }
 
   /* projects */
-  .cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
-  @media (max-width:860px){ .cards{ grid-template-columns:1fr; } }
+  .cards{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); }
+  @media (max-width:780px){ .cards{ grid-template-columns:1fr; } }
   .card{
-    background:var(--paper-raised);
-    border:1px solid var(--line);
-    padding:24px 22px;
-    display:flex; flex-direction:column;
-    transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+    background:var(--ink); padding:34px 30px; display:flex; flex-direction:column;
+    transition:background .25s ease;
   }
-  .card:hover{
-    border-color:var(--signal);
-    transform:translateY(-3px);
-    box-shadow:0 12px 28px -18px rgba(27,33,29,.4);
-  }
-  .card-tag{
-    font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.06em;
-    text-transform:uppercase; color:var(--flag); margin-bottom:10px;
-  }
-  .card h3{ font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.25rem; margin:0 0 10px; }
-  .card p{ color:var(--ink); font-size:14.5px; margin:0; flex-grow:1; }
+  .card:hover{ background:var(--ink-2); }
+  .card-tag{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
+  .card h3{ font-size:1.5rem; margin:0 0 14px; }
+  .card p{ font-size:14.5px; color:var(--muted-on-dark); margin:0; flex-grow:1; }
+  .card-arrow{ margin-top:20px; font-family:'IBM Plex Mono', monospace; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:var(--text-on-dark); }
+  .card-arrow span{ display:inline-block; transition:transform .2s ease; }
+  .card:hover .card-arrow span{ transform:translateX(5px); }
 
   /* education */
-  .edu-row{ display:flex; justify-content:space-between; gap:20px; padding:18px 0; border-top:1px solid var(--line); flex-wrap:wrap; }
+  .edu-row{ display:flex; justify-content:space-between; gap:20px; padding:18px 0; border-top:1px solid var(--line-light); flex-wrap:wrap; }
   .edu-block:first-child .edu-row{ border-top:none; }
-  .edu-left b{ font-family:'Space Grotesk', sans-serif; font-weight:600; }
-  .edu-sub{ color:var(--muted); font-size:14px; margin-top:2px; }
+  .edu-left b{ font-family:'Fraunces', serif; font-weight:600; }
+  .edu-sub{ font-size:14px; margin-top:2px; }
   .edu-right{ text-align:right; }
-  .edu-dates{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted); }
-  .edu-grade{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--flag); margin-top:4px; }
+  .edu-dates{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; }
+  .edu-grade{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--accent); margin-top:4px; }
 
-  /* grade readout — signature element */
-  .readout{ margin:2px 0 8px; }
+  .readout{ margin:4px 0 8px; }
   .readout svg{ width:100%; height:auto; display:block; overflow:visible; }
-  .readout-label{
-    font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--muted);
-    letter-spacing:.04em; margin:0 0 4px;
-  }
+  .readout-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.04em; margin:0 0 6px; }
 
   .module-table{ width:100%; border-collapse:collapse; margin-top:14px; font-size:13.5px; }
-  .module-table th, .module-table td{ text-align:left; padding:7px 10px 7px 0; border-bottom:1px solid var(--line); }
-  .module-table th{ font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted); font-weight:500; }
-  .module-table td.grade{ font-family:'IBM Plex Mono', monospace; color:var(--flag); white-space:nowrap; }
+  .module-table th, .module-table td{ text-align:left; padding:8px 10px 8px 0; border-bottom:1px solid var(--line-light); }
+  .module-table th{ font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:.05em; font-weight:500; }
+  .module-table td.grade{ font-family:'IBM Plex Mono', monospace; color:var(--accent); white-space:nowrap; }
 
-  /* skills */
-  .skill-group{ margin-bottom:26px; }
+  /* skills marquee */
+  .marquee{ overflow:hidden; border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark); padding:20px 0; margin-bottom:46px; }
+  .marquee-track{ display:flex; width:max-content; gap:36px; animation:scrollLeft 32s linear infinite; }
+  .marquee:hover .marquee-track{ animation-play-state:paused; }
+  .marquee-track span{ font-family:'Fraunces', serif; font-style:italic; font-size:1.3rem; color:var(--muted-on-dark); white-space:nowrap; }
+  @keyframes scrollLeft{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+  @media (prefers-reduced-motion: reduce){ .marquee-track{ animation:none; } }
+
+  .skill-group{ margin-bottom:28px; }
   .skill-group:last-child{ margin-bottom:0; }
-  .skill-label{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted); letter-spacing:.04em; margin-bottom:12px; }
+  .skill-label{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.04em; margin-bottom:12px; }
   .chips{ display:flex; flex-wrap:wrap; gap:9px; }
   .chip{
     font-family:'IBM Plex Mono', monospace; font-size:12.5px;
-    border:1px solid var(--line); padding:6px 12px; border-radius:2px;
-    background:var(--paper-raised); transition:border-color .18s ease, color .18s ease;
+    border:1px solid var(--line-dark); padding:7px 13px; border-radius:2px;
+    transition:border-color .18s ease, color .18s ease;
   }
-  .chip:hover{ border-color:var(--signal); color:var(--signal); }
+  .chip:hover{ border-color:var(--accent); color:var(--accent); }
 
   /* footer */
-  footer{ border-top:1px solid var(--line); padding:52px 0 40px; }
+  footer{ padding:64px 0 44px; }
   .footer-grid{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:24px; }
-  footer h2{
-    font-family:'Space Grotesk', sans-serif; font-weight:600; font-size:1.6rem; margin:0 0 14px;
-  }
-  .footer-meta{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted); }
-  .footer-links{ display:flex; gap:16px; }
-
-  /* progress */
-  .progress-bar{
-    position:fixed; top:0; left:0; height:2px; width:0%;
-    background:var(--signal);
-    z-index:50; transition:width .08s linear;
-  }
-
-  .word{ display:inline-block; opacity:0; transform:translateY(.4em); animation:wordIn .6s ease forwards; }
-  @keyframes wordIn{ to{ opacity:1; transform:translateY(0); } }
+  footer h2{ font-style:italic; font-size:clamp(1.9rem, 4vw, 2.6rem); margin:0 0 18px; }
+  .footer-meta{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; }
+  .footer-links{ display:flex; gap:18px; }
 
   /* ---------- detail accordions ---------- */
-  details.more{ margin-top:10px; border-top:1px dashed var(--line); padding-top:10px; }
+  details.more{ margin-top:12px; border-top:1px dashed var(--line-light); padding-top:12px; }
+  .section-dark details.more{ border-top-color:var(--line-dark); }
   details.more summary{
     cursor:pointer; list-style:none;
     font-family:'IBM Plex Mono', monospace; font-size:12px; letter-spacing:.04em; text-transform:uppercase;
-    color:var(--signal); display:flex; align-items:center; gap:6px; -webkit-user-select:none; user-select:none;
+    color:var(--accent); display:flex; align-items:center; gap:6px; -webkit-user-select:none; user-select:none;
   }
   details.more summary::-webkit-details-marker{ display:none; }
   details.more summary::before{
     content:"+"; display:inline-flex; align-items:center; justify-content:center;
-    width:16px; height:16px; border:1px solid var(--signal); border-radius:2px; font-size:12px;
+    width:16px; height:16px; border:1px solid var(--accent); border-radius:2px; font-size:12px;
   }
   details.more[open] summary::before{ content:"\2212"; }
-  details.more .more-body{ font-size:14px; color:var(--muted); padding-top:12px; animation:detailIn .3s ease; }
+  details.more .more-body{ font-size:14px; padding-top:14px; animation:detailIn .3s ease; }
   @keyframes detailIn{ from{ opacity:0; transform:translateY(-4px);} to{ opacity:1; transform:translateY(0);} }
   details.more .more-body ul{ margin:0; padding-left:18px; }
-  details.more .more-body li{ margin-bottom:5px; }
-  details.more .more-body li::marker{ color:var(--flag); }
+  details.more .more-body li{ margin-bottom:6px; }
+  details.more .more-body li::marker{ color:var(--accent); }
   details.more .more-body p{ margin:0 0 10px; }
   details.more .more-body p:last-child{ margin-bottom:0; }
   details.more .quote{
-    font-family:'Source Serif 4', serif; font-style:italic; color:var(--ink);
-    border-left:2px solid var(--flag-soft); padding-left:12px; margin:10px 0;
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .card{ transform:none !important; }
+    font-family:'Fraunces', serif; font-style:italic;
+    border-left:2px solid var(--accent-soft); padding-left:12px; margin:10px 0;
   }
 </style>
 </head>
@@ -398,7 +297,7 @@
 
 <nav class="topbar" id="topbar">
   <div class="topbar-inner">
-    <div class="brand"><span class="brand-mark">SH</span> Stephen Hoffmann</div>
+    <div class="brand">Stephen Hoffmann</div>
     <div class="navlinks">
       <a href="#erfahrung" class="u-link">Erfahrung</a>
       <a href="#projekte" class="u-link">Projekte</a>
@@ -412,340 +311,371 @@
 
 <div class="progress-bar" id="progressBar"></div>
 
-<header class="hero">
+<header class="hero section-dark" id="heroSection">
+  <div class="hero-glow" id="heroGlow"></div>
   <div class="wrap hero-inner">
-    <div class="hero-grid">
-      <div class="hero-rail">Consumer Science · TUM · <b>München</b></div>
-      <div class="hero-text">
-        <p class="eyebrow">Verhalten &middot; Daten &middot; KI</p>
-        <h1 id="heroName">Stephen Hoffmann</h1>
-        <p class="hero-role">M.Sc. Consumer Science an der <strong>TUM</strong> &middot; Werkstudent Data &amp; IT-Projektmanagement bei der <strong>BMW Group</strong></p>
-        <p class="hero-thesis">Mich interessiert, wie Menschen Entscheidungen treffen &mdash; und wie sich das in Daten zeigt. Bei BMW baue ich SQL-Dashboards und Pipelines. In eigenen Projekten verbinde ich das mit KI, von einem Verhandlungstraining bis zu einer Rennstrategie-Simulation.</p>
-        <div class="cta-row">
-          <a class="btn btn-solid" href="mailto:stephen.ernst.hoffmann@gmail.com">E-Mail schreiben</a>
-          <a class="btn btn-outline" href="https://linkedin.com/in/stephen-e-hoffmann" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
-      </div>
+    <p class="eyebrow">Consumer Science · München</p>
+    <h1 class="name" id="heroName">
+      <span class="line"><span class="word">Stephen</span></span>
+      <span class="line"><span class="word">Hoffmann</span></span>
+    </h1>
+    <p class="hero-role">M.Sc. Consumer Science an der <strong>TUM</strong> &middot; Werkstudent Data &amp; IT-Projektmanagement bei der <strong>BMW Group</strong></p>
+    <p class="hero-thesis">Mich interessiert, wie Menschen entscheiden und wie sich das in Daten zeigt. Bei BMW baue ich KPI-Dashboards für eine ganze Hauptabteilung. Nebenbei starte ich eigene Projekte, von einem KI-Verhandlungstraining bis zu einer echten Schlaf-Initiative in München.</p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="mailto:stephen.ernst.hoffmann@gmail.com">E-Mail schreiben</a>
+      <a class="btn btn-outline" href="https://linkedin.com/in/stephen-e-hoffmann" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="hero-photo-band">
       <div class="hero-photo">
-        <span class="cbl"></span><span class="cbr"></span>
-        <img src="photo.webp" alt="Portrait von Stephen Hoffmann" width="156" height="196">
-        <span class="hero-photo-cap">München, 2026</span>
+        <img src="photo.webp" alt="Portrait von Stephen Hoffmann" width="360" height="480">
       </div>
     </div>
   </div>
 </header>
 
-<main class="wrap">
+<main>
 
-  <section class="section reveal" id="erfahrung">
-    <p class="eyebrow">Erfahrung</p>
-    <h2>Berufserfahrung</h2>
+  <section class="section section-light reveal" id="erfahrung">
+    <div class="wrap">
+      <p class="eyebrow">Erfahrung</p>
+      <h2>Berufserfahrung</h2>
 
-    <div class="annotated">
-      <div>
-        <div class="role">
-          <div class="role-head">
-            <span class="role-title">BMW Group</span>
-            <span class="role-dates">03 / 2025 &ndash; heute</span>
+      <div class="annotated">
+        <div>
+          <div class="role">
+            <div class="role-head">
+              <span class="role-title">BMW Group</span>
+              <span class="role-dates">03 / 2025 &ndash; heute</span>
+            </div>
+            <p class="role-sub">Praktikant &amp; Werkstudent, Agiles Produktmanagement (IT) &middot; München</p>
+            <ul>
+              <li>Aufbau eines KPI- und Metrik-Dashboards für die Hauptabteilung Customer Brands Sales, zur Ableitung von Effizienzmaßnahmen in der skalierten agilen Arbeitsweise<sup class="ref">1</sup></li>
+              <li>Moderation und Organisation agiler Meetings wie Retrospektiven und Dailies, auf Abteilungs- und Hauptabteilungsebene</li>
+              <li>Konzept zur Abfrage und Auswertung der Mitarbeiterzufriedenheit in der Abteilung</li>
+            </ul>
+            <details class="more">
+              <summary>Zeugnisbewertung anzeigen</summary>
+              <div class="more-body">
+                <p class="quote">&bdquo;Herr Hoffmann verfügt über außerordentlich umfangreiche Fachkenntnisse und eine sehr hohe Fachkompetenz. Sein persönliches Verhalten war stets einwandfrei.&ldquo;</p>
+                <p>In der kriterienorientierten Beurteilung erreichte er durchweg die beiden höchsten Stufen: Kunden- und Qualitätsorientierung, Umgang mit Wissen, Eigeninitiative und Teamfähigkeit auf der Bestnote, analytisches Denken, Arbeitsorganisation, Kommunikation und sicheres Auftreten in der zweithöchsten Kategorie.</p>
+              </div>
+            </details>
           </div>
-          <p class="role-sub">Praktikant &amp; Werkstudent, IT-Projektmanagement &middot; München</p>
-          <ul>
-            <li>SQL-Dashboards und ETL-Pipelines mit AWS Athena, Glue und QuickSight<sup class="ref">1</sup></li>
-            <li>Moderation agiler Workshops und Ceremonies zu Team-Kollaboration und Konfliktmanagement, auf Abteilungs- und Hauptabteilungsebene</li>
-          </ul>
         </div>
+        <aside class="note"><b>1</b> Das Dashboard wird nach Praktikumsende weitergenutzt, BMW hat die Zusammenarbeit als Werkstudent verlängert.</aside>
       </div>
-      <aside class="note"><b>1</b> &mdash; u.&nbsp;a. eine Pipeline, die Qualitätskennzahlen automatisiert als Parquet-Snapshots nach S3 schreibt, und neun einzelne Jira-Filter, die zu einer gemeinsamen Abfrage zusammengeführt wurden.</aside>
-    </div>
 
-    <p class="subhead">Weitere Stationen</p>
-    <ul class="timeline-compact">
-      <li>
-        <span class="tc-date">10/2023 &ndash; 12/2024</span>
-        <span class="tc-what">
-          <b>Studentische Hilfskraft</b> &middot; Kompetenzzentrum Wachstums- &amp; Vertriebsstrategien, Hochschule Neu-Ulm <span class="tc-where">&middot; Neu-Ulm</span>
-          <details class="more">
-            <summary>Mehr Details</summary>
-            <div class="more-body">
-              <p>Mitwirkung am KI/VR-Verhandlungsexperiment &bdquo;Beat the Bot&ldquo; &mdash; von Experten-Interviews über Wettbewerbsanalyse KI-basierter Trainingstools bis zur qualitativen Datenauswertung mit MAXQDA.</p>
-              <ul>
-                <li>Mitautor der wissenschaftlichen Publikation &bdquo;Enhancing Sales Training with VR and AI: A Jobs-to-be-Done-Theory-Approach&ldquo;</li>
-                <li>Mitwirkung im gesamten Veröffentlichungsprozess von Journal-Einreichungen sowie an Feldstudien und Datenerhebungen</li>
-                <li>Aufbau und Betreuung eines TikTok-Kanals für die Hochschule Neu-Ulm inkl. Konzept, Dreh und Schnitt der Videos</li>
-                <li>Entwicklung und Umsetzung der Marketing-Kampagne für den Masterstudiengang &bdquo;Advanced Sales Management and Intelligence&ldquo;</li>
-              </ul>
-              <p class="quote">&bdquo;Herr Hoffmann hat durch seine hohe fachliche Kompetenz und sein kreatives Denken beeindruckt&hellip; Wir empfehlen Herrn Hoffmann uneingeschränkt weiter.&ldquo;</p>
-              <p>&mdash; Prof. Dr. Barbara Dannemann, Kompetenzzentrum Wachstums- &amp; Vertriebsstrategien</p>
-            </div>
-          </details>
-        </span>
-      </li>
-      <li>
-        <span class="tc-date">03/2023 &ndash; 09/2023</span>
-        <span class="tc-what">
-          <b>Praktikum</b> &middot; Learning &amp; Development, Team Connex <span class="tc-where">&middot; Holzgerlingen</span>
-          <details class="more">
-            <summary>Mehr Details</summary>
-            <div class="more-body">
-              <ul>
-                <li>Mediale und didaktische Gestaltung interaktiver Live-Online-Trainings, inkl. technischer Moderation</li>
-                <li>Entwicklung von Analyseinstrumenten für die Persönlichkeitsentwicklung</li>
-                <li>Kundenmanagement bei Vor- und Nachbereitung von Seminaren sowie Erstellung von Web Based Trainings</li>
-              </ul>
-              <p class="quote">&bdquo;Er erledigte sämtliche Tätigkeiten eigenständig, zügig und mit hoher Eigenmotivation.&ldquo;</p>
-              <p>&mdash; Marie Meiners, Geschäftsführende Gesellschafterin, TEAM CONNEX GmbH</p>
-            </div>
-          </details>
-        </span>
-      </li>
-      <li>
-        <span class="tc-date">07/2022 &ndash; 01/2023</span>
-        <span class="tc-what">
-          <b>Werkstudent</b> &middot; Sales Representative (Social Recruiting), inga. <span class="tc-where">&middot; Frankfurt</span>
-          <details class="more">
-            <summary>Mehr Details</summary>
-            <div class="more-body">
-              <ul>
-                <li>Bedarfsanalyse und Prospecting bei Zielunternehmen, aktive Ansprache per Mail, Cold Calling, LinkedIn und Xing</li>
-                <li>Telefonische Erstgespräche (Inbound &amp; Outbound) und Pipeline-Management per HubSpot CRM</li>
-              </ul>
-              <p class="quote">&bdquo;Er verfolgt die vereinbarten Ziele nachhaltig und mit höchstem Erfolg.&ldquo;</p>
-              <p>&mdash; Corinna Haas, Geschäftsführerin, Inga GmbH</p>
-            </div>
-          </details>
-        </span>
-      </li>
-      <li>
-        <span class="tc-date">11/2020 &ndash; 03/2022</span>
-        <span class="tc-what"><b>Werkstudent</b> &middot; Product Support Staff, Jobvalley (Studitemps) <span class="tc-where">&middot; Sindelfingen</span></span>
-      </li>
-    </ul>
+      <p class="subhead">Weitere Stationen</p>
+      <ul class="timeline-compact">
+        <li>
+          <span class="tc-date">10/2023 &ndash; 12/2024</span>
+          <span class="tc-what">
+            <b>Studentische Hilfskraft</b> &middot; Kompetenzzentrum Wachstums- &amp; Vertriebsstrategien, Hochschule Neu-Ulm <span class="muted">&middot; Neu-Ulm</span>
+            <details class="more">
+              <summary>Mehr Details</summary>
+              <div class="more-body">
+                <p>Mitarbeit am KI/VR-Verhandlungsexperiment &bdquo;Beat the Bot&ldquo;. Expertengespräche geführt, Wettbewerbsanalyse KI-basierter Trainingstools erstellt, qualitative Daten mit MAXQDA ausgewertet.</p>
+                <ul>
+                  <li>Mitautor der Publikation &bdquo;Enhancing Sales Training with VR and AI: A Jobs-to-be-Done-Theory-Approach&ldquo;</li>
+                  <li>Mitgewirkt am gesamten Prozess von Journal-Einreichungen und an Feldstudien</li>
+                  <li>TikTok-Kanal der Hochschule Neu-Ulm aufgebaut und betreut, von Konzept bis Schnitt</li>
+                  <li>Marketing-Kampagne für den Masterstudiengang &bdquo;Advanced Sales Management and Intelligence&ldquo; entwickelt</li>
+                </ul>
+                <p class="quote">&bdquo;Herr Hoffmann hat durch seine hohe fachliche Kompetenz und sein kreatives Denken beeindruckt. Wir empfehlen ihn uneingeschränkt weiter.&ldquo;</p>
+                <p>Prof. Dr. Barbara Dannemann, Kompetenzzentrum Wachstums- &amp; Vertriebsstrategien</p>
+              </div>
+            </details>
+          </span>
+        </li>
+        <li>
+          <span class="tc-date">03/2023 &ndash; 09/2023</span>
+          <span class="tc-what">
+            <b>Praktikum</b> &middot; Learning &amp; Development, Team Connex <span class="muted">&middot; Holzgerlingen</span>
+            <details class="more">
+              <summary>Mehr Details</summary>
+              <div class="more-body">
+                <ul>
+                  <li>Mediale und didaktische Gestaltung interaktiver Live-Online-Trainings, inklusive technischer Moderation</li>
+                  <li>Analyseinstrumente für die Persönlichkeitsentwicklung mitentwickelt</li>
+                  <li>Kundenmanagement bei Vor- und Nachbereitung von Seminaren, Web Based Trainings erstellt</li>
+                </ul>
+                <p class="quote">&bdquo;Er erledigte sämtliche Tätigkeiten eigenständig, zügig und mit hoher Eigenmotivation.&ldquo;</p>
+                <p>Marie Meiners, Geschäftsführende Gesellschafterin, TEAM CONNEX GmbH</p>
+              </div>
+            </details>
+          </span>
+        </li>
+        <li>
+          <span class="tc-date">07/2022 &ndash; 01/2023</span>
+          <span class="tc-what">
+            <b>Werkstudent</b> &middot; Sales Representative (Social Recruiting), inga. <span class="muted">&middot; Frankfurt</span>
+            <details class="more">
+              <summary>Mehr Details</summary>
+              <div class="more-body">
+                <ul>
+                  <li>Bedarfsanalyse und Prospecting bei Zielunternehmen, aktive Ansprache per Mail, Cold Calling, LinkedIn und Xing</li>
+                  <li>Telefonische Erstgespräche und Pipeline-Management per HubSpot CRM</li>
+                </ul>
+                <p class="quote">&bdquo;Er verfolgt die vereinbarten Ziele nachhaltig und mit höchstem Erfolg.&ldquo;</p>
+                <p>Corinna Haas, Geschäftsführerin, Inga GmbH</p>
+              </div>
+            </details>
+          </span>
+        </li>
+        <li>
+          <span class="tc-date">11/2020 &ndash; 03/2022</span>
+          <span class="tc-what"><b>Werkstudent</b> &middot; Product Support Staff, Jobvalley (Studitemps) <span class="muted">&middot; Sindelfingen</span></span>
+        </li>
+      </ul>
+    </div>
   </section>
 
-  <section class="section reveal" id="projekte">
-    <p class="eyebrow">Projekte</p>
-    <h2>Eigene Projekte</h2>
+  <section class="section section-dark reveal" id="projekte">
+    <div class="wrap">
+      <p class="eyebrow">Projekte</p>
+      <h2>Eigene Projekte</h2>
+    </div>
     <div class="cards">
       <div class="card">
         <p class="card-tag">Bachelorarbeit &middot; Note 1,0</p>
         <h3>Beat the Bot</h3>
-        <p>Ein KI-basiertes Verhandlungstraining für den Vertrieb. Vorgestellt auf der ISPIM-Konferenz in Osaka. Das daraus entstandene Paper &bdquo;Beyond Virtual Realities&ldquo; erhielt den Best Doctoral Paper Award bei der GSSI 2025.</p>
+        <p>Ein KI- und VR-gestütztes Verhandlungstraining für den Vertrieb. Vorgestellt auf der ISPIM-Konferenz in Osaka. Das daraus entstandene Paper &bdquo;Beyond Virtual Realities&ldquo; gewann den Best Doctoral Paper Award bei der GSSI 2025.</p>
+        <span class="card-arrow">Details im Kompetenzzentrum-Zeugnis oben <span>&rarr;</span></span>
       </div>
       <div class="card">
-        <p class="card-tag">TUM Changemakers &middot; Team Squids</p>
-        <h3>LumenSleep</h3>
-        <p>Ein Projekt zu künstlichem Licht in der Nacht und seiner Wirkung auf den Schlaf. Grundlage waren eine eigene Umfrage mit 36 Teilnehmenden und aktuelle Forschung, u.&nbsp;a. eine große Kohortenstudie aus JAMA Network Open.</p>
+        <p class="card-tag">TUM Changemakers &middot; laufend</p>
+        <h3>The Good Sleep Club</h3>
+        <p>Eine Bewegung für besseren Schlaf in München, gestartet mit vier Mitgründenden. Die erste Community Night war innerhalb weniger Tage ausgebucht, mit Schlafforschenden und Gründenden aus der Branche als Gästen. Aktuell arbeiten wir an einer Kampagne für Fensterdämmungs-Förderung und leisere Nächte in der Stadt.</p>
+        <span class="card-arrow">thegoodsleepclub <span>&rarr;</span></span>
       </div>
       <div class="card">
-        <p class="card-tag">TUM Team Analytics</p>
+        <p class="card-tag">TUM Team Analytics Challenge</p>
         <h3>McQueen Racing</h3>
-        <p>Ein Machine-Learning-Modell mit Gradient Boosting, das Fahrzeug-Setup und Rennstrategie für ein simuliertes Rennteam optimiert.</p>
+        <p>Ein datengetriebenes Racing-Team aus vier Personen für die Team Data Analytics Challenge. Als Data Principal &amp; Systems Director leite ich die Analysen und bereite die Renndaten so auf, dass Setup-Entscheidungen aus historischen Daten folgen statt aus Bauchgefühl.</p>
+        <span class="card-arrow">Rolle: Data Principal &amp; Systems Director <span>&rarr;</span></span>
+      </div>
+      <div class="card">
+        <p class="card-tag">Marktforschungsseminar &middot; GARDENA</p>
+        <h3>Zisternen-Konzeptstudie</h3>
+        <p>Eine Konzeptstudie im Team zu unterirdischen Zisternen: Ist-Zustand von Zisternen- und Gartenbesitzenden, Customer Journey und ein Produktkonzept für ein neues Zisternensystem, vorgestellt bei GARDENA.</p>
+        <span class="card-arrow">Team: 4 Personen <span>&rarr;</span></span>
       </div>
     </div>
   </section>
 
-  <section class="section reveal" id="ausbildung">
-    <p class="eyebrow">Ausbildung</p>
-    <h2>Ausbildung</h2>
+  <section class="section section-light reveal" id="ausbildung">
+    <div class="wrap">
+      <p class="eyebrow">Ausbildung</p>
+      <h2>Ausbildung</h2>
 
-    <div>
-      <div class="edu-block">
-        <div class="edu-row">
-          <div class="edu-left">
-            <b>Technische Universität München</b>
-            <div class="edu-sub">Consumer Science &middot; Master of Science (M.Sc.) &middot; München</div>
+      <div>
+        <div class="edu-block">
+          <div class="edu-row">
+            <div class="edu-left">
+              <b>Technische Universität München</b>
+              <div class="edu-sub muted">Consumer Science &middot; Master of Science (M.Sc.) &middot; München</div>
+            </div>
+            <div class="edu-right">
+              <div class="edu-dates muted">10/2025 &ndash; 08/2027</div>
+              <div class="edu-grade">Ø 1,5</div>
+            </div>
           </div>
-          <div class="edu-right">
-            <div class="edu-dates">10/2025 &ndash; 08/2027</div>
-            <div class="edu-grade">Ø 1,5</div>
-          </div>
-        </div>
 
-        <p class="readout-label">7 Module &middot; 39 Credits &middot; Notenverteilung (1,0 = sehr gut)</p>
-        <div class="readout">
-          <svg viewBox="0 0 600 62" role="img" aria-label="Notenverteilung TUM: sechs Module zwischen 1,0 und 2,3, Durchschnitt 1,5">
-            <rect x="20" y="26" width="140" height="8" fill="var(--signal-soft)"></rect>
-            <rect x="160" y="26" width="280" height="8" fill="var(--paper)"></rect>
-            <rect x="440" y="26" width="140" height="8" fill="var(--flag-soft)"></rect>
-            <line x1="20" y1="18" x2="20" y2="42" stroke="var(--line)"></line>
-            <line x1="580" y1="18" x2="580" y2="42" stroke="var(--line)"></line>
-            <text x="20" y="55" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">1,0</text>
-            <text x="440" y="55" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">2,5</text>
-            <text x="565" y="55" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">3,0</text>
-            <circle cx="20" cy="24" r="5" fill="var(--ink)"><title>Empirical Research in Economics and Management — 1,0</title></circle>
-            <circle cx="20" cy="36" r="5" fill="var(--ink)"><title>Introduction to Statistics Using R — 1,0</title></circle>
-            <circle cx="104" cy="24" r="5" fill="var(--ink)"><title>Qualitative and Quantitative Methods in Consumer Research — 1,3</title></circle>
-            <circle cx="104" cy="36" r="5" fill="var(--ink)"><title>Sponsorship-linked Marketing — 1,3</title></circle>
-            <circle cx="300" cy="24" r="5" fill="var(--ink)"><title>Applied Strategy and Organization: Strategies for international Corporations — 2,0</title></circle>
-            <circle cx="300" cy="36" r="5" fill="var(--ink)"><title>Strategies in MNEs — 2,0</title></circle>
-            <circle cx="384" cy="30" r="5" fill="var(--ink)"><title>Consumer Behavior — 2,3</title></circle>
-            <path d="M160 30 l6 -7 l6 7 l-6 7 z" fill="var(--flag)"><title>Zwischennote gesamt — 1,5</title></path>
-          </svg>
-        </div>
-
-        <details class="more">
-          <summary>Modultabelle anzeigen</summary>
-          <div class="more-body">
-            <table class="module-table">
-              <thead><tr><th>Modul</th><th>Note</th><th>Credits</th></tr></thead>
-              <tbody>
-                <tr><td>Empirical Research in Economics and Management</td><td class="grade">1,0</td><td>6</td></tr>
-                <tr><td>Introduction to Statistics Using R</td><td class="grade">1,0</td><td>6</td></tr>
-                <tr><td>Qualitative and Quantitative Methods in Consumer Research</td><td class="grade">1,3</td><td>6</td></tr>
-                <tr><td>Sponsorship-linked Marketing</td><td class="grade">1,3</td><td>6</td></tr>
-                <tr><td>Applied Strategy and Organization: Strategies for international Corporations</td><td class="grade">2,0</td><td>3</td></tr>
-                <tr><td>Strategies in MNEs</td><td class="grade">2,0</td><td>6</td></tr>
-                <tr><td>Consumer Behavior</td><td class="grade">2,3</td><td>6</td></tr>
-              </tbody>
-            </table>
+          <p class="readout-label muted">7 Module &middot; 39 Credits &middot; Notenverteilung, 1,0 ist sehr gut</p>
+          <div class="readout">
+            <svg viewBox="0 0 600 62" role="img" aria-label="Notenverteilung TUM: sechs Module zwischen 1,0 und 2,3, Durchschnitt 1,5">
+              <rect x="20" y="26" width="140" height="8" fill="var(--accent-soft)" opacity=".35"></rect>
+              <rect x="160" y="26" width="280" height="8" fill="var(--paper-2)"></rect>
+              <rect x="440" y="26" width="140" height="8" fill="var(--line-light)"></rect>
+              <line x1="20" y1="18" x2="20" y2="42" stroke="var(--line-light)"></line>
+              <line x1="580" y1="18" x2="580" y2="42" stroke="var(--line-light)"></line>
+              <text x="20" y="55" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6B695F">1,0</text>
+              <text x="440" y="55" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6B695F">2,5</text>
+              <text x="565" y="55" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6B695F">3,0</text>
+              <circle cx="20" cy="24" r="5" fill="var(--ink)"><title>Empirical Research in Economics and Management: 1,0</title></circle>
+              <circle cx="20" cy="36" r="5" fill="var(--ink)"><title>Introduction to Statistics Using R: 1,0</title></circle>
+              <circle cx="104" cy="24" r="5" fill="var(--ink)"><title>Qualitative and Quantitative Methods in Consumer Research: 1,3</title></circle>
+              <circle cx="104" cy="36" r="5" fill="var(--ink)"><title>Sponsorship-linked Marketing: 1,3</title></circle>
+              <circle cx="300" cy="24" r="5" fill="var(--ink)"><title>Applied Strategy and Organization: Strategies for international Corporations: 2,0</title></circle>
+              <circle cx="300" cy="36" r="5" fill="var(--ink)"><title>Strategies in MNEs: 2,0</title></circle>
+              <circle cx="384" cy="30" r="5" fill="var(--ink)"><title>Consumer Behavior: 2,3</title></circle>
+              <path d="M160 30 l6 -7 l6 7 l-6 7 z" fill="var(--accent)"><title>Zwischennote gesamt: 1,5</title></path>
+            </svg>
           </div>
-        </details>
-      </div>
 
-      <div class="edu-block">
-        <div class="edu-row">
-          <div class="edu-left">
-            <b>Korea University</b>
-            <div class="edu-sub">Auslandssemester &middot; Political Science &amp; Economics &middot; Seoul</div>
-          </div>
-          <div class="edu-right">
-            <div class="edu-dates">08/2024 &ndash; 12/2024</div>
-            <div class="edu-grade">Ø 1,8</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="edu-block">
-        <div class="edu-row">
-          <div class="edu-left">
-            <b>Hochschule Neu-Ulm</b>
-            <div class="edu-sub">Wirtschaftspsychologie &middot; Bachelor of Science (B.Sc.) &middot; Neu-Ulm</div>
-          </div>
-          <div class="edu-right">
-            <div class="edu-dates">03/2021 &ndash; 02/2025</div>
-            <div class="edu-grade">Ø 1,4 &middot; Top 10%</div>
-          </div>
-        </div>
-
-        <p class="readout-label">7 Kernleistungen &middot; Notenverteilung (1,0 = sehr gut)</p>
-        <div class="readout">
-          <svg viewBox="0 0 600 62" role="img" aria-label="Notenverteilung HNU Bachelor: sieben Kernleistungen zwischen 1,0 und 1,8, Durchschnitt 1,4">
-            <rect x="20" y="26" width="140" height="8" fill="var(--signal-soft)"></rect>
-            <rect x="160" y="26" width="280" height="8" fill="var(--paper)"></rect>
-            <rect x="440" y="26" width="140" height="8" fill="var(--flag-soft)"></rect>
-            <line x1="20" y1="18" x2="20" y2="42" stroke="var(--line)"></line>
-            <line x1="580" y1="18" x2="580" y2="42" stroke="var(--line)"></line>
-            <text x="20" y="55" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">1,0</text>
-            <text x="440" y="55" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">2,5</text>
-            <text x="565" y="55" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">3,0</text>
-            <circle cx="20" cy="21" r="5" fill="var(--ink)"><title>Bachelorarbeit — 1,0</title></circle>
-            <circle cx="20" cy="27" r="5" fill="var(--ink)"><title>Forschungsmethoden — 1,0</title></circle>
-            <circle cx="20" cy="33" r="5" fill="var(--ink)"><title>Informationsmanagement &amp; Programmierung — 1,0</title></circle>
-            <circle cx="20" cy="39" r="5" fill="var(--ink)"><title>Schwerpunkt Strategic Market Intelligence — 1,0</title></circle>
-            <circle cx="48" cy="30" r="5" fill="var(--ink)"><title>Schwerpunkt Kommunikationspsychologie &amp; Konfliktmanagement — 1,1</title></circle>
-            <circle cx="104" cy="30" r="5" fill="var(--ink)"><title>Sozialpsychologie — 1,3</title></circle>
-            <circle cx="244" cy="30" r="5" fill="var(--ink)"><title>Internationaler Schwerpunkt, Korea University — 1,8</title></circle>
-            <path d="M132 30 l6 -7 l6 7 l-6 7 z" fill="var(--flag)"><title>Gesamtnote Bachelor — 1,4</title></path>
-          </svg>
-        </div>
-
-        <details class="more">
-          <summary>Schwerpunkte &amp; Highlights anzeigen</summary>
-          <div class="more-body">
-            <p><b style="color:var(--ink)">Schwerpunkt Strategic Market Intelligence</b> (15 ECTS, Ø 1,0) &mdash; Marktforschungsbasics &amp; -seminare</p>
-            <p><b style="color:var(--ink)">Schwerpunkt Kommunikationspsychologie &amp; Konfliktmanagement</b> (15 ECTS, Ø 1,1) &mdash; Gesprächsführung, Umgang mit Vorurteilen &amp; Konflikten</p>
-            <p><b style="color:var(--ink)">Internationaler Schwerpunkt</b> an der Korea University (16 ECTS, Ø 1,8) &mdash; Financial Management (1,5), Investments (2,0), Korean Speaking for Beginners (2,0)</p>
-            <p><b style="color:var(--ink)">Bachelorarbeit</b> &bdquo;Digitale Transformation im Vertrieb&ldquo; &mdash; Note 1,0, inkl. Bachelorseminar (1,0)</p>
-          </div>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <section class="section reveal" id="engagement">
-    <p class="eyebrow">Engagement</p>
-    <h2>Ehrenamt &amp; Engagement</h2>
-    <ul class="timeline-compact">
-      <li>
-        <span class="tc-date">03/2022 &ndash; 02/2025</span>
-        <span class="tc-what">
-          <b>Studierendenvertretung</b> &middot; Hochschule Neu-Ulm <span class="tc-where">&middot; Neu-Ulm</span>
           <details class="more">
-            <summary>Mehr Details</summary>
+            <summary>Modultabelle anzeigen</summary>
             <div class="more-body">
-              <ul>
-                <li>Gründung &amp; Leitung des Referats &bdquo;Sport&ldquo; (10/2023&ndash;10/2024) &mdash; u.&nbsp;a. Organisation eines Marathons für Studierende</li>
-                <li>Referat &bdquo;Veranstaltungen&ldquo; &mdash; Semester Opening/Closing Party, Festivals, Bier-Pong-Turniere, Weihnachtsmarkt</li>
-                <li>Referat &bdquo;Gesunde Hochschule&ldquo; &mdash; Gesundheitstage &amp; Blutspende-Aktionen</li>
-                <li>Einführung von Trello &amp; Notion als Management-Tools inkl. Schulung neuer Mitglieder</li>
-                <li>Entwicklung eines Onboarding-Konzepts für neue Anwärter</li>
-              </ul>
-              <p class="quote">&bdquo;Durch sein überaus systematisches Vorgehen und seinen sehr kooperativen Führungsstil konnte er seine Projekte stets zu unserer äußersten Zufriedenheit abschließen.&ldquo;</p>
+              <table class="module-table">
+                <thead><tr><th>Modul</th><th>Note</th><th>Credits</th></tr></thead>
+                <tbody>
+                  <tr><td>Empirical Research in Economics and Management</td><td class="grade">1,0</td><td>6</td></tr>
+                  <tr><td>Introduction to Statistics Using R</td><td class="grade">1,0</td><td>6</td></tr>
+                  <tr><td>Qualitative and Quantitative Methods in Consumer Research</td><td class="grade">1,3</td><td>6</td></tr>
+                  <tr><td>Sponsorship-linked Marketing</td><td class="grade">1,3</td><td>6</td></tr>
+                  <tr><td>Applied Strategy and Organization: Strategies for international Corporations</td><td class="grade">2,0</td><td>3</td></tr>
+                  <tr><td>Strategies in MNEs</td><td class="grade">2,0</td><td>6</td></tr>
+                  <tr><td>Consumer Behavior</td><td class="grade">2,3</td><td>6</td></tr>
+                </tbody>
+              </table>
             </div>
           </details>
-        </span>
-      </li>
-      <li>
-        <span class="tc-date">10/2023 &ndash; 07/2024</span>
-        <span class="tc-what">
-          <b>Lokale Erasmus+ Initiative</b> &middot; Hochschule Neu-Ulm <span class="tc-where">&middot; Neu-Ulm</span>
+        </div>
+
+        <div class="edu-block">
+          <div class="edu-row">
+            <div class="edu-left">
+              <b>Korea University</b>
+              <div class="edu-sub muted">Auslandssemester &middot; Political Science &amp; Economics &middot; Seoul</div>
+            </div>
+            <div class="edu-right">
+              <div class="edu-dates muted">08/2024 &ndash; 12/2024</div>
+              <div class="edu-grade">Ø 1,8</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="edu-block">
+          <div class="edu-row">
+            <div class="edu-left">
+              <b>Hochschule Neu-Ulm</b>
+              <div class="edu-sub muted">Wirtschaftspsychologie &middot; Bachelor of Science (B.Sc.) &middot; Neu-Ulm</div>
+            </div>
+            <div class="edu-right">
+              <div class="edu-dates muted">03/2021 &ndash; 02/2025</div>
+              <div class="edu-grade">Ø 1,4 &middot; Top 10%</div>
+            </div>
+          </div>
+
+          <p class="readout-label muted">7 Kernleistungen &middot; Notenverteilung, 1,0 ist sehr gut</p>
+          <div class="readout">
+            <svg viewBox="0 0 600 62" role="img" aria-label="Notenverteilung HNU Bachelor: sieben Kernleistungen zwischen 1,0 und 1,8, Durchschnitt 1,4">
+              <rect x="20" y="26" width="140" height="8" fill="var(--accent-soft)" opacity=".35"></rect>
+              <rect x="160" y="26" width="280" height="8" fill="var(--paper-2)"></rect>
+              <rect x="440" y="26" width="140" height="8" fill="var(--line-light)"></rect>
+              <line x1="20" y1="18" x2="20" y2="42" stroke="var(--line-light)"></line>
+              <line x1="580" y1="18" x2="580" y2="42" stroke="var(--line-light)"></line>
+              <text x="20" y="55" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6B695F">1,0</text>
+              <text x="440" y="55" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6B695F">2,5</text>
+              <text x="565" y="55" font-family="IBM Plex Mono, monospace" font-size="10" fill="#6B695F">3,0</text>
+              <circle cx="20" cy="21" r="5" fill="var(--ink)"><title>Bachelorarbeit: 1,0</title></circle>
+              <circle cx="20" cy="27" r="5" fill="var(--ink)"><title>Forschungsmethoden: 1,0</title></circle>
+              <circle cx="20" cy="33" r="5" fill="var(--ink)"><title>Informationsmanagement &amp; Programmierung: 1,0</title></circle>
+              <circle cx="20" cy="39" r="5" fill="var(--ink)"><title>Schwerpunkt Strategic Market Intelligence: 1,0</title></circle>
+              <circle cx="48" cy="30" r="5" fill="var(--ink)"><title>Schwerpunkt Kommunikationspsychologie &amp; Konfliktmanagement: 1,1</title></circle>
+              <circle cx="104" cy="30" r="5" fill="var(--ink)"><title>Sozialpsychologie: 1,3</title></circle>
+              <circle cx="244" cy="30" r="5" fill="var(--ink)"><title>Internationaler Schwerpunkt, Korea University: 1,8</title></circle>
+              <path d="M132 30 l6 -7 l6 7 l-6 7 z" fill="var(--accent)"><title>Gesamtnote Bachelor: 1,4</title></path>
+            </svg>
+          </div>
+
           <details class="more">
-            <summary>Mehr Details</summary>
+            <summary>Schwerpunkte anzeigen</summary>
             <div class="more-body">
-              <p>Beratung deutscher Studierender vor Erasmus-Aufenthalten und Betreuung internationaler Gaststudierender &mdash; Aufbau &amp; Etablierung der Initiative, Planung und Durchführung von Veranstaltungen. Gefördert vom DAAD im Auftrag des Bundesministeriums für Bildung und Forschung.</p>
+              <p><b>Schwerpunkt Strategic Market Intelligence</b> (15 ECTS, Ø 1,0): Marktforschungsbasics und -seminare</p>
+              <p><b>Schwerpunkt Kommunikationspsychologie &amp; Konfliktmanagement</b> (15 ECTS, Ø 1,1): Gesprächsführung, Umgang mit Vorurteilen und Konflikten</p>
+              <p><b>Internationaler Schwerpunkt</b> an der Korea University (16 ECTS, Ø 1,8): Financial Management (1,5), Investments (2,0), Korean Speaking for Beginners (2,0)</p>
+              <p><b>Bachelorarbeit</b> &bdquo;Digitale Transformation im Vertrieb&ldquo;: Note 1,0, inklusive Bachelorseminar (1,0)</p>
             </div>
           </details>
-        </span>
-      </li>
-      <li>
-        <span class="tc-date">08/2025 &ndash; heute</span>
-        <span class="tc-what"><b>Freiwillige Hilfskraft</b> &middot; Ecclesia Kirche <span class="tc-where">&middot; München</span></span>
-      </li>
-    </ul>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <section class="section reveal" id="kenntnisse">
-    <p class="eyebrow">Kenntnisse</p>
-    <h2>Kenntnisse</h2>
+  <section class="section section-dark reveal" id="engagement">
+    <div class="wrap">
+      <p class="eyebrow">Engagement</p>
+      <h2>Ehrenamt &amp; Engagement</h2>
+      <ul class="timeline-compact">
+        <li>
+          <span class="tc-date">03/2022 &ndash; 02/2025</span>
+          <span class="tc-what">
+            <b>Studierendenvertretung</b> &middot; Hochschule Neu-Ulm <span class="muted">&middot; Neu-Ulm</span>
+            <details class="more">
+              <summary>Mehr Details</summary>
+              <div class="more-body">
+                <ul>
+                  <li>Referat &bdquo;Sport&ldquo; gegründet und geleitet, unter anderem einen Marathon für Studierende organisiert</li>
+                  <li>Referat &bdquo;Veranstaltungen&ldquo;: Semester Opening/Closing Party, Festivals, Bier-Pong-Turniere, Weihnachtsmarkt</li>
+                  <li>Referat &bdquo;Gesunde Hochschule&ldquo;: Gesundheitstage und Blutspende-Aktionen</li>
+                  <li>Trello und Notion als Management-Tools eingeführt, inklusive Schulung neuer Mitglieder</li>
+                </ul>
+                <p class="quote">&bdquo;Durch sein überaus systematisches Vorgehen und seinen sehr kooperativen Führungsstil konnte er seine Projekte stets zu unserer äußersten Zufriedenheit abschließen.&ldquo;</p>
+              </div>
+            </details>
+          </span>
+        </li>
+        <li>
+          <span class="tc-date">10/2023 &ndash; 07/2024</span>
+          <span class="tc-what">
+            <b>Lokale Erasmus+ Initiative</b> &middot; Hochschule Neu-Ulm <span class="muted">&middot; Neu-Ulm</span>
+            <details class="more">
+              <summary>Mehr Details</summary>
+              <div class="more-body">
+                <p>Beratung deutscher Studierender vor Erasmus-Aufenthalten und Betreuung internationaler Gaststudierender. Aufbau der Initiative, Planung und Durchführung von Veranstaltungen, gefördert vom DAAD.</p>
+              </div>
+            </details>
+          </span>
+        </li>
+        <li>
+          <span class="tc-date">08/2025 &ndash; heute</span>
+          <span class="tc-what"><b>Freiwillige Hilfskraft</b> &middot; Ecclesia Kirche <span class="muted">&middot; München</span></span>
+        </li>
+      </ul>
+    </div>
+  </section>
 
-    <div class="skill-group">
-      <p class="skill-label">Daten &amp; Cloud</p>
-      <div class="chips">
-        <span class="chip">SQL</span>
-        <span class="chip">Python</span>
-        <span class="chip">R (RStudio)</span>
-        <span class="chip">AWS Athena</span>
-        <span class="chip">AWS Glue</span>
-        <span class="chip">QuickSight</span>
+  <section class="section section-dark reveal" id="kenntnisse">
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>SQL &middot; Python &middot; R &middot; AWS Athena &middot; QuickSight &middot; Claude Code &middot; n8n &middot; Notion &middot; MAXQDA &middot; SPSS &middot;</span>
+        <span>SQL &middot; Python &middot; R &middot; AWS Athena &middot; QuickSight &middot; Claude Code &middot; n8n &middot; Notion &middot; MAXQDA &middot; SPSS &middot;</span>
       </div>
     </div>
+    <div class="wrap">
+      <p class="eyebrow">Kenntnisse</p>
+      <h2>Kenntnisse</h2>
 
-    <div class="skill-group">
-      <p class="skill-label">KI &amp; Tools</p>
-      <div class="chips">
-        <span class="chip">Claude Code</span>
-        <span class="chip">Codex</span>
-        <span class="chip">n8n</span>
-        <span class="chip">Cursor</span>
-        <span class="chip">Notion</span>
-        <span class="chip">Confluence</span>
+      <div class="skill-group">
+        <p class="skill-label muted">Daten &amp; Cloud</p>
+        <div class="chips">
+          <span class="chip">SQL</span>
+          <span class="chip">Python</span>
+          <span class="chip">R (RStudio)</span>
+          <span class="chip">AWS Athena</span>
+          <span class="chip">AWS Glue</span>
+          <span class="chip">QuickSight</span>
+        </div>
       </div>
-    </div>
 
-    <div class="skill-group">
-      <p class="skill-label">Sprachen</p>
-      <div class="chips">
-        <span class="chip">Deutsch &middot; Muttersprache</span>
-        <span class="chip">Englisch &middot; C1</span>
-        <span class="chip">Spanisch &middot; B1</span>
-        <span class="chip">Koreanisch &middot; A1</span>
+      <div class="skill-group">
+        <p class="skill-label muted">KI &amp; Tools</p>
+        <div class="chips">
+          <span class="chip">Claude Code</span>
+          <span class="chip">Codex</span>
+          <span class="chip">n8n</span>
+          <span class="chip">Cursor</span>
+          <span class="chip">Notion</span>
+          <span class="chip">Confluence</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <p class="skill-label muted">Sprachen</p>
+        <div class="chips">
+          <span class="chip">Deutsch &middot; Muttersprache</span>
+          <span class="chip">Englisch &middot; C1</span>
+          <span class="chip">Spanisch &middot; B1</span>
+          <span class="chip">Koreanisch &middot; A1</span>
+        </div>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer id="kontakt">
+<footer class="section-dark" id="kontakt">
   <div class="wrap">
     <div class="footer-grid">
       <div>
@@ -755,7 +685,7 @@
           <a class="u-link" href="https://linkedin.com/in/stephen-e-hoffmann" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
-      <div class="footer-meta">München &middot; <span id="year"></span></div>
+      <div class="footer-meta muted">München &middot; <span id="year"></span></div>
     </div>
   </div>
 </footer>
@@ -782,12 +712,26 @@
   document.addEventListener('scroll', onProgress, { passive:true });
   onProgress();
 
+  var hero = document.getElementById('heroSection');
+  var glow = document.getElementById('heroGlow');
+  if (!reduced && hero) {
+    hero.addEventListener('mousemove', function(e){
+      var r = hero.getBoundingClientRect();
+      glow.style.setProperty('--gx', ((e.clientX - r.left) / r.width * 100) + '%');
+      glow.style.setProperty('--gy', ((e.clientY - r.top) / r.height * 100) + '%');
+    });
+  }
+
   if (!reduced) {
-    var heroName = document.getElementById('heroName');
-    var text = heroName.textContent;
-    heroName.innerHTML = text.split(' ').map(function(w, i){
-      return '<span class="word" style="animation-delay:' + (0.15 + i * 0.09) + 's">' + w + '</span>';
-    }).join(' ');
+    document.querySelectorAll('.btn').forEach(function(btn){
+      btn.addEventListener('mousemove', function(e){
+        var r = btn.getBoundingClientRect();
+        var x = e.clientX - r.left - r.width / 2;
+        var y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = 'translate(' + (x * 0.22) + 'px,' + (y * 0.32) + 'px)';
+      });
+      btn.addEventListener('mouseleave', function(){ btn.style.transform = 'translate(0,0)'; });
+    });
   }
 
   var reveals = document.querySelectorAll('.reveal');
@@ -801,7 +745,7 @@
           obs.unobserve(entry.target);
         }
       });
-    }, { threshold:0.12 });
+    }, { threshold:0.1 });
     reveals.forEach(function(el){ obs.observe(el); });
   }
 </script>
