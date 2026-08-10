@@ -24,8 +24,8 @@
     --text-on-light:#151410;
     --muted-on-dark:#9C9A8D;
     --muted-on-light:#6B695F;
-    --accent:#C1391F;
-    --accent-soft:#E7C3B7;
+    --accent:#4A90E2;
+    --accent-soft:#C7DFF7;
     --max:760px;
     --note:240px;
     --gap:56px;
@@ -114,7 +114,7 @@
   .hero{ position:relative; padding:76px 0 0; overflow:hidden; }
   .hero-glow{
     position:absolute; inset:0; pointer-events:none;
-    background:radial-gradient(480px circle at var(--gx,70%) var(--gy,20%), rgba(193,57,31,.16), transparent 65%);
+    background:radial-gradient(480px circle at var(--gx,70%) var(--gy,20%), rgba(74,144,226,.18), transparent 65%);
     transition:opacity .4s ease; opacity:0;
   }
   .hero:hover .hero-glow{ opacity:1; }
@@ -159,8 +159,13 @@
   .hero-photo{
     width:min(360px, 46vw); aspect-ratio:3/4; position:relative;
     margin-bottom:-64px; margin-right:4%;
+    background:var(--ink); overflow:hidden;
   }
-  .hero-photo img{ width:100%; height:100%; object-fit:cover; display:block; filter:grayscale(1) contrast(1.05); }
+  .hero-photo img{
+    width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block;
+    transform:scale(1.55); transform-origin:center 38%;
+    filter:grayscale(1) contrast(1.05);
+  }
   .hero-photo::before, .hero-photo::after{ content:""; position:absolute; width:18px; height:18px; }
   .hero-photo::before{ top:-8px; left:-8px; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
   .hero-photo::after{ bottom:-8px; right:-8px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }
