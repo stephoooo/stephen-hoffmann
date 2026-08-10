@@ -91,15 +91,15 @@
     position:sticky; top:0; z-index:30;
     display:flex; align-items:center; justify-content:space-between;
     padding:18px 28px;
-    background:rgba(18,18,16,0);
+    background:rgba(18,18,16,.92);
+    backdrop-filter:blur(6px);
     border-bottom:1px solid transparent;
-    transition:background .3s ease, border-color .3s ease;
+    transition:border-color .3s ease, box-shadow .3s ease;
     color:var(--text-on-dark);
   }
   .topbar.scrolled{
-    background:rgba(18,18,16,.92);
-    backdrop-filter:blur(6px);
     border-bottom-color:var(--line-dark);
+    box-shadow:0 6px 20px -14px rgba(0,0,0,.5);
   }
   .topbar-inner{ max-width:960px; margin:0 auto; width:100%; display:flex; align-items:center; justify-content:space-between; }
   .brand{ font-family:'Fraunces', serif; font-weight:500; font-size:16px; letter-spacing:.01em; }
@@ -155,23 +155,22 @@
   .btn-outline{ border:1px solid var(--line-dark); color:var(--text-on-dark); }
   .btn-outline:hover{ border-color:var(--accent); color:var(--accent); }
 
-  .hero-photo-band{ position:relative; display:flex; justify-content:flex-end; }
+  .hero-grid{ display:grid; grid-template-columns:1fr auto; column-gap:44px; align-items:start; }
+  .hero-photo-band{ position:relative; }
   .hero-photo{
-    width:min(360px, 46vw); aspect-ratio:3/4; position:relative;
-    margin-bottom:-64px; margin-right:4%;
-    background:var(--ink); overflow:hidden;
+    width:clamp(120px, 14vw, 176px); aspect-ratio:1/1; border-radius:50%;
+    overflow:hidden; margin-top:4px;
+    box-shadow:0 0 0 1px var(--line-dark), 0 0 0 6px rgba(18,18,16,1), 0 0 0 7px var(--accent-soft);
   }
   .hero-photo img{
-    width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block;
-    transform:scale(1.55); transform-origin:center 38%;
+    width:100%; height:100%; object-fit:cover; object-position:center 42%; display:block;
     filter:grayscale(1) contrast(1.05);
   }
-  .hero-photo::before, .hero-photo::after{ content:""; position:absolute; width:18px; height:18px; }
-  .hero-photo::before{ top:-8px; left:-8px; border-top:2px solid var(--accent); border-left:2px solid var(--accent); }
-  .hero-photo::after{ bottom:-8px; right:-8px; border-bottom:2px solid var(--accent); border-right:2px solid var(--accent); }
 
   @media (max-width:720px){
-    .hero-photo{ width:56vw; margin-right:0; margin-bottom:-40px; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-photo-band{ order:-1; margin-bottom:20px; }
+    .hero-photo{ width:104px; }
   }
 
   /* ---------- Sections ---------- */
@@ -319,20 +318,24 @@
 <header class="hero section-dark" id="heroSection">
   <div class="hero-glow" id="heroGlow"></div>
   <div class="wrap hero-inner">
-    <p class="eyebrow">Consumer Science · München</p>
-    <h1 class="name" id="heroName">
-      <span class="line"><span class="word">Stephen</span></span>
-      <span class="line"><span class="word">Hoffmann</span></span>
-    </h1>
-    <p class="hero-role">M.Sc. Consumer Science an der <strong>TUM</strong> &middot; Werkstudent Data &amp; IT-Projektmanagement bei der <strong>BMW Group</strong></p>
-    <p class="hero-thesis">Mich interessiert, wie Menschen entscheiden und wie sich das in Daten zeigt. Bei BMW baue ich KPI-Dashboards für eine ganze Hauptabteilung. Nebenbei starte ich eigene Projekte, von einem KI-Verhandlungstraining bis zu einer echten Schlaf-Initiative in München.</p>
-    <div class="cta-row">
-      <a class="btn btn-solid" href="mailto:stephen.ernst.hoffmann@gmail.com">E-Mail schreiben</a>
-      <a class="btn btn-outline" href="https://linkedin.com/in/stephen-e-hoffmann" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-    <div class="hero-photo-band">
-      <div class="hero-photo">
-        <img src="photo.webp" alt="Portrait von Stephen Hoffmann" width="360" height="480">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <p class="eyebrow">Consumer Science · München</p>
+        <h1 class="name" id="heroName">
+          <span class="line"><span class="word">Stephen</span></span>
+          <span class="line"><span class="word">Hoffmann</span></span>
+        </h1>
+        <p class="hero-role">M.Sc. Consumer Science an der <strong>TUM</strong> &middot; Werkstudent Data &amp; IT-Projektmanagement bei der <strong>BMW Group</strong></p>
+        <p class="hero-thesis">Mich interessiert, wie Menschen entscheiden und wie sich das in Daten zeigt. Bei BMW baue ich KPI-Dashboards für eine ganze Hauptabteilung. Nebenbei starte ich eigene Projekte, von einem KI-Verhandlungstraining bis zu einer echten Schlaf-Initiative in München.</p>
+        <div class="cta-row">
+          <a class="btn btn-solid" href="mailto:stephen.ernst.hoffmann@gmail.com">E-Mail schreiben</a>
+          <a class="btn btn-outline" href="https://linkedin.com/in/stephen-e-hoffmann" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+      <div class="hero-photo-band">
+        <div class="hero-photo">
+          <img src="photo.webp" alt="Portrait von Stephen Hoffmann" width="176" height="176">
+        </div>
       </div>
     </div>
   </div>
