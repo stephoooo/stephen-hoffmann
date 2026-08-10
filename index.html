@@ -222,9 +222,10 @@
   .card-tag{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
   .card h3{ font-size:1.5rem; margin:0 0 14px; }
   .card p{ font-size:14.5px; color:var(--muted-on-dark); margin:0; flex-grow:1; }
-  .card-arrow{ margin-top:20px; font-family:'IBM Plex Mono', monospace; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:var(--text-on-dark); }
+  .card-arrow{ margin-top:20px; font-family:'IBM Plex Mono', monospace; font-size:12px; display:inline-flex; align-items:center; gap:6px; color:var(--accent); text-decoration:none; }
   .card-arrow span{ display:inline-block; transition:transform .2s ease; }
-  .card:hover .card-arrow span{ transform:translateX(5px); }
+  .card-arrow:hover span{ transform:translateX(5px); }
+  .card-meta{ margin-top:20px; font-family:'IBM Plex Mono', monospace; font-size:12px; display:block; color:var(--muted-on-dark); }
 
   /* education */
   .edu-row{ display:flex; justify-content:space-between; gap:20px; padding:18px 0; border-top:1px solid var(--line-light); flex-wrap:wrap; }
@@ -448,25 +449,25 @@
         <p class="card-tag">Bachelorarbeit &middot; Note 1,0</p>
         <h3>Beat the Bot</h3>
         <p>Ein KI- und VR-gestütztes Verhandlungstraining für den Vertrieb. Vorgestellt auf der ISPIM-Konferenz in Osaka. Das daraus entstandene Paper &bdquo;Beyond Virtual Realities&ldquo; gewann den Best Doctoral Paper Award bei der GSSI 2025.</p>
-        <span class="card-arrow">Details im Kompetenzzentrum-Zeugnis oben <span>&rarr;</span></span>
+        <span class="card-meta">Details im Kompetenzzentrum-Zeugnis oben</span>
       </div>
       <div class="card">
         <p class="card-tag">TUM Changemakers &middot; laufend</p>
         <h3>The Good Sleep Club</h3>
         <p>Eine Bewegung für besseren Schlaf in München, gestartet mit vier Mitgründenden. Die erste Community Night war innerhalb weniger Tage ausgebucht, mit Schlafforschenden und Gründenden aus der Branche als Gästen. Aktuell arbeiten wir an einer Kampagne für Fensterdämmungs-Förderung und leisere Nächte in der Stadt.</p>
-        <span class="card-arrow">thegoodsleepclub <span>&rarr;</span></span>
+        <a class="card-arrow" href="https://good-sleep-club.vercel.app" target="_blank" rel="noopener">Website ansehen <span>&rarr;</span></a>
       </div>
       <div class="card">
         <p class="card-tag">TUM Team Analytics Challenge</p>
         <h3>McQueen Racing</h3>
         <p>Ein datengetriebenes Racing-Team aus vier Personen für die Team Data Analytics Challenge. Als Data Principal &amp; Systems Director leite ich die Analysen und bereite die Renndaten so auf, dass Setup-Entscheidungen aus historischen Daten folgen statt aus Bauchgefühl.</p>
-        <span class="card-arrow">Rolle: Data Principal &amp; Systems Director <span>&rarr;</span></span>
+        <span class="card-meta">Rolle: Data Principal &amp; Systems Director</span>
       </div>
       <div class="card">
         <p class="card-tag">Marktforschungsseminar &middot; GARDENA</p>
         <h3>Zisternen-Konzeptstudie</h3>
         <p>Eine Konzeptstudie im Team zu unterirdischen Zisternen: Ist-Zustand von Zisternen- und Gartenbesitzenden, Customer Journey und ein Produktkonzept für ein neues Zisternensystem, vorgestellt bei GARDENA.</p>
-        <span class="card-arrow">Team: 4 Personen <span>&rarr;</span></span>
+        <span class="card-meta">Team: 4 Personen</span>
       </div>
     </div>
   </section>
@@ -687,7 +688,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <h2>Lass uns reden.</h2>
+        <h2>Melde dich gern.</h2>
         <div class="footer-links">
           <a class="u-link" href="mailto:stephen.ernst.hoffmann@gmail.com">stephen.ernst.hoffmann@gmail.com</a>
           <a class="u-link" href="https://linkedin.com/in/stephen-e-hoffmann" target="_blank" rel="noopener">LinkedIn</a>
