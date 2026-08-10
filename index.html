@@ -3,10 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stephen Hoffmann</title>
-<meta name="description" content="Stephen Hoffmann. Consumer Science M.Sc. an der TUM, Werkstudent Data & IT-Projektmanagement bei der BMW Group.">
+<title>Stephen Hoffmann — Consumer Science &amp; Data</title>
+<meta name="description" content="Stephen Hoffmann studiert Consumer Science M.Sc. an der TUM und arbeitet als Werkstudent für Data &amp; IT-Projektmanagement bei der BMW Group in München.">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Stephen Hoffmann — Consumer Science & Data">
+<meta property="og:description" content="M.Sc. Consumer Science an der TUM, Werkstudent Data & IT-Projektmanagement bei der BMW Group. Verhalten, Daten, KI.">
+<meta property="og:image" content="https://stephen-hoffmann.vercel.app/og.png">
+<meta property="og:url" content="https://stephen-hoffmann.vercel.app">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Stephen Hoffmann — Consumer Science & Data">
+<meta name="twitter:description" content="M.Sc. Consumer Science an der TUM, Werkstudent Data & IT-Projektmanagement bei der BMW Group.">
+<meta name="twitter:image" content="https://stephen-hoffmann.vercel.app/og.png">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23121210'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23FAF9F5' text-anchor='middle'%3ESH%3C/text%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23121210'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23FAF9F5' text-anchor='middle'%3ESH%3C/text%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,7 +117,39 @@
   .navlinks{ display:flex; gap:26px; font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.02em; }
   .navlinks a{ color:var(--muted-on-dark); transition:color .18s ease; }
   .navlinks a:hover{ color:var(--text-on-dark); }
-  @media (max-width:640px){ .navlinks{ display:none; } }
+
+  .nav-toggle{
+    display:none; background:none; border:none; padding:8px; margin:-8px; cursor:pointer;
+    width:44px; height:44px; align-items:center; justify-content:center;
+  }
+  .nav-toggle .bar{ display:block; width:22px; height:2px; background:var(--text-on-dark); position:relative; transition:background .2s ease; }
+  .nav-toggle .bar::before, .nav-toggle .bar::after{
+    content:""; position:absolute; left:0; width:22px; height:2px; background:var(--text-on-dark); transition:transform .25s ease, top .25s ease;
+  }
+  .nav-toggle .bar::before{ top:-7px; }
+  .nav-toggle .bar::after{ top:7px; }
+  .nav-toggle[aria-expanded="true"] .bar{ background:transparent; }
+  .nav-toggle[aria-expanded="true"] .bar::before{ top:0; transform:rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] .bar::after{ top:0; transform:rotate(-45deg); }
+
+  .mobile-menu{
+    display:none;
+    flex-direction:column; gap:0;
+    position:fixed; top:57px; left:0; right:0; bottom:0; z-index:100;
+    background:var(--ink); padding:12px 28px 28px;
+    transform:translateY(-8px); opacity:0; pointer-events:none;
+    transition:opacity .22s ease, transform .22s ease;
+  }
+  .mobile-menu.open{ opacity:1; transform:translateY(0); pointer-events:auto; }
+  .mobile-menu a{ font-family:'IBM Plex Mono', monospace; color:var(--muted-on-dark); font-size:17px; padding:16px 0; border-top:1px solid var(--line-dark); }
+  .mobile-menu a:first-child{ border-top:none; }
+  .mobile-menu a:hover{ color:var(--text-on-dark); }
+
+  @media (max-width:640px){
+    .navlinks{ display:none; }
+    .nav-toggle{ display:inline-flex; }
+    .mobile-menu{ display:flex; }
+  }
 
   .progress-bar{ position:fixed; top:0; left:0; height:2px; width:0%; background:var(--accent); z-index:50; transition:width .08s linear; }
 
@@ -246,10 +289,10 @@
   .module-table td.grade{ font-family:'IBM Plex Mono', monospace; color:var(--accent); white-space:nowrap; }
 
   /* skills marquee */
-  .marquee{ overflow:hidden; border-top:1px solid var(--line-dark); border-bottom:1px solid var(--line-dark); padding:20px 0; margin-bottom:46px; }
+  .marquee{ overflow:hidden; border-top:1px solid var(--line-light); border-bottom:1px solid var(--line-light); padding:20px 0; margin-bottom:46px; }
   .marquee-track{ display:flex; width:max-content; gap:36px; animation:scrollLeft 32s linear infinite; }
   .marquee:hover .marquee-track{ animation-play-state:paused; }
-  .marquee-track span{ font-family:'Fraunces', serif; font-style:italic; font-size:1.3rem; color:var(--muted-on-dark); white-space:nowrap; }
+  .marquee-track span{ font-family:'Fraunces', serif; font-style:italic; font-size:1.3rem; color:var(--muted-on-light); white-space:nowrap; }
   @keyframes scrollLeft{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
   @media (prefers-reduced-motion: reduce){ .marquee-track{ animation:none; } }
 
@@ -259,7 +302,7 @@
   .chips{ display:flex; flex-wrap:wrap; gap:9px; }
   .chip{
     font-family:'IBM Plex Mono', monospace; font-size:12.5px;
-    border:1px solid var(--line-dark); padding:7px 13px; border-radius:2px;
+    border:1px solid var(--line-light); padding:7px 13px; border-radius:2px;
     transition:border-color .18s ease, color .18s ease;
   }
   .chip:hover{ border-color:var(--accent); color:var(--accent); }
@@ -311,8 +354,20 @@
       <a href="#kenntnisse" class="u-link">Kenntnisse</a>
       <a href="#kontakt" class="u-link">Kontakt</a>
     </div>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Menü öffnen">
+      <span class="bar"></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#erfahrung" class="u-link">Erfahrung</a>
+  <a href="#projekte" class="u-link">Projekte</a>
+  <a href="#ausbildung" class="u-link">Ausbildung</a>
+  <a href="#engagement" class="u-link">Engagement</a>
+  <a href="#kenntnisse" class="u-link">Kenntnisse</a>
+  <a href="#kontakt" class="u-link">Kontakt</a>
+</div>
 
 <div class="progress-bar" id="progressBar"></div>
 
@@ -331,6 +386,7 @@
         <div class="cta-row">
           <a class="btn btn-solid" href="mailto:stephen.ernst.hoffmann@gmail.com">E-Mail schreiben</a>
           <a class="btn btn-outline" href="https://linkedin.com/in/stephen-e-hoffmann" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-outline" href="Hoffmann_Stephen_Lebenslauf.pdf" target="_blank" rel="noopener">Lebenslauf (PDF)</a>
         </div>
       </div>
       <div class="hero-photo-band">
@@ -449,7 +505,7 @@
         <p class="card-tag">Bachelorarbeit &middot; Note 1,0</p>
         <h3>Beat the Bot</h3>
         <p>Ein KI- und VR-gestütztes Verhandlungstraining für den Vertrieb. Vorgestellt auf der ISPIM-Konferenz in Osaka. Das daraus entstandene Paper &bdquo;Beyond Virtual Realities&ldquo; gewann den Best Doctoral Paper Award bei der GSSI 2025.</p>
-        <span class="card-meta">Details im Kompetenzzentrum-Zeugnis oben</span>
+        <a class="card-arrow" href="#erfahrung">Mehr dazu bei Hochschule Neu-Ulm <span>&rarr;</span></a>
       </div>
       <div class="card">
         <p class="card-tag">TUM Changemakers &middot; laufend</p>
@@ -595,7 +651,7 @@
   <section class="section section-dark reveal" id="engagement">
     <div class="wrap">
       <p class="eyebrow">Engagement</p>
-      <h2>Ehrenamt &amp; Engagement</h2>
+      <h2>Ehrenamt</h2>
       <ul class="timeline-compact">
         <li>
           <span class="tc-date">03/2022 &ndash; 02/2025</span>
@@ -635,7 +691,7 @@
     </div>
   </section>
 
-  <section class="section section-dark reveal" id="kenntnisse">
+  <section class="section section-light reveal" id="kenntnisse">
     <div class="marquee" aria-hidden="true">
       <div class="marquee-track">
         <span>SQL &middot; Python &middot; R &middot; AWS Athena &middot; QuickSight &middot; Claude Code &middot; n8n &middot; Notion &middot; MAXQDA &middot; SPSS &middot;</span>
@@ -709,6 +765,22 @@
   };
   document.addEventListener('scroll', onScroll, { passive:true });
   onScroll();
+
+  var navToggle = document.getElementById('navToggle');
+  var mobileMenu = document.getElementById('mobileMenu');
+  var closeMenu = function(){
+    mobileMenu.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Menü öffnen');
+  };
+  var toggleMenu = function(){
+    var isOpen = mobileMenu.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', isOpen ? 'Menü schließen' : 'Menü öffnen');
+  };
+  navToggle.addEventListener('click', toggleMenu);
+  mobileMenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
