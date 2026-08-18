@@ -105,6 +105,39 @@
   .quote-dark{ border-left-color:var(--accent); }
   .quote-attr{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted-on-light); margin-top:8px; }
 
+  .process{ display:flex; align-items:flex-start; margin:32px 0 8px; }
+  .process-step{ flex:1; position:relative; padding-top:26px; text-align:left; }
+  .process-step::before{ content:""; position:absolute; top:8px; left:0; right:0; height:1px; background:var(--line-dark); }
+  .process-step::after{ content:""; position:absolute; top:2px; left:0; width:13px; height:13px; border-radius:50%; background:var(--ink); border:2px solid var(--accent); }
+  .process-step:first-child::before{ left:6px; }
+  .process-step:last-child::before{ right:calc(100% - 6px); }
+  .process-num{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--accent); margin:0 0 6px; }
+  .process-step h4{ font-family:'Source Serif 4', serif; font-weight:600; font-size:.92rem; margin:0 0 6px; padding-right:10px; }
+  .process-step p{ font-size:11.5px; color:var(--muted-on-dark); margin:0; padding-right:12px; }
+  @media (max-width:820px){
+    .process{ flex-direction:column; gap:20px; }
+    .process-step{ padding-top:0; padding-left:26px; }
+    .process-step::before{ top:0; bottom:0; left:5px; right:auto; width:1px; height:auto; }
+    .process-step:first-child::before, .process-step:last-child::before{ left:5px; right:auto; }
+    .process-step::after{ top:2px; left:0; }
+    .process-step h4, .process-step p{ padding-right:0; }
+  }
+
+  .bars{ margin-top:8px; }
+  .bar-row{ display:grid; grid-template-columns:1fr auto; gap:14px; align-items:center; padding:9px 0; border-top:1px solid var(--line-dark); }
+  .bar-row:first-child{ border-top:none; }
+  .bar-label{ font-size:14px; }
+  .bar-track{ grid-column:1/-1; height:5px; background:var(--ink-2); position:relative; margin-top:2px; }
+  .bar-fill{ position:absolute; inset:0; width:var(--w); background:var(--accent); }
+  .bar-value{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted-on-dark); white-space:nowrap; }
+  .bars-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.04em; color:var(--muted-on-light); margin:0 0 6px; }
+
+  .model-table{ width:100%; border-collapse:collapse; margin-top:8px; font-size:13.5px; }
+  .model-table th, .model-table td{ text-align:left; padding:9px 10px 9px 0; border-bottom:1px solid var(--line-light); }
+  .model-table th{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted-on-light); font-weight:500; }
+  .model-table td.mono{ font-family:'IBM Plex Mono', monospace; }
+  .model-table tr.winner td{ color:var(--accent); font-weight:600; }
+
   footer{ padding:44px 0; }
   .footer-links{ display:flex; gap:18px; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:13px; }
   .footer-meta{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted-on-dark); margin-top:18px; }
@@ -122,8 +155,8 @@
   <div class="wrap">
     <p class="grade-badge">TUM Team Analytics Challenge</p>
     <p class="eyebrow">Consumer Science &middot; TUM</p>
-    <h1 class="title">McQueen Racing: Datengetriebenes Setup statt Bauchgefühl</h1>
-    <p class="subtitle">Als Data Principal &amp; Systems Director habe ich für ein simuliertes Vier-Personen-Racing-Team Fahrzeug-Setup und Rennstrategie über fünf Rennen aus historischen Daten optimiert statt aus Erfahrungswerten zu raten.</p>
+    <h1 class="title">McQueen Racing: Wie wir Fahrzeug-Setups aus Daten statt aus Erfahrung ableiten</h1>
+    <p class="subtitle">Als Data Principal &amp; Systems Director habe ich für ein simuliertes Vier-Personen-Racing-Team einen Modellierungs-Workflow gebaut, der aus historischen Setup- und Rundenzeitdaten die schnellste Fahrzeugkonfiguration vorschlägt, samt Reifen- und Strategie-Modell.</p>
     <p class="meta-row">
       <span>Team: Yufei Xu, Stephen Hoffmann, Thomas Rehrl, Andreas Lammers</span>
       <span>&middot;</span>
@@ -140,51 +173,100 @@
 
   <section class="section section-light">
     <div class="wrap">
-      <p class="eyebrow">Ergebnisse</p>
-      <h2>Von Platz 4 an die Spitze des Feldes</h2>
-      <p>Über fünf Rennen hat sich das Team von Mittelfeldplätzen bis zur schnellsten Startaufstellung im Saisonfinale vorgearbeitet, mit einem Fahrzeug-Setup, das nach jedem Rennen anhand neuer Daten nachjustiert wurde.</p>
+      <p class="eyebrow">Fragestellung</p>
+      <h2>Setup-Wahl ohne klare Methode</h2>
+      <p>Zu Saisonbeginn gab es kein System für die Fahrzeugabstimmung, nur Erfahrungswerte und Bauchgefühl. Drei Fragen haben unsere Arbeit geleitet: Wie bekommen wir das beste Setup aus den verfügbaren Daten? Wie treffen wir die bestmöglichen Entscheidungen unter Unsicherheit? Und wie lässt sich das über die Saison wiederholbar machen, nicht nur einmalig?</p>
+    </div>
+  </section>
 
-      <table class="race-table">
-        <thead><tr><th>Rennen</th><th>Ergebnis</th><th>Punkte</th><th>Trend</th></tr></thead>
+  <section class="section section-dark">
+    <div class="wrap">
+      <p class="eyebrow">Modell-Workflow</p>
+      <h2>Acht Schritte von Rohdaten zum validierten Setup</h2>
+      <p>Modelle allein reichen nicht: Sie schlagen Kandidaten vor, aber die finale Entscheidung fällt erst nach echten Testrunden auf der Strecke.</p>
+
+      <div class="process">
+        <div class="process-step"><p class="process-num">1</p><h4>Load Data</h4><p>Strecke, Setup, Rundenzeit</p></div>
+        <div class="process-step"><p class="process-num">2</p><h4>Split Data</h4><p>80/20 Train-Test, GroupKFold</p></div>
+        <div class="process-step"><p class="process-num">3</p><h4>Tune Models</h4><p>6 Modelle per Optuna + CV</p></div>
+        <div class="process-step"><p class="process-num">4</p><h4>Rank Models</h4><p>RMSE, MAE, R&sup2; im Vergleich</p></div>
+        <div class="process-step"><p class="process-num">5</p><h4>Build Predictor</h4><p>CV-gewichtetes Ensemble</p></div>
+        <div class="process-step"><p class="process-num">6</p><h4>Search Setups</h4><p>Random Search, lokale Verfeinerung</p></div>
+        <div class="process-step"><p class="process-num">7</p><h4>Re-score</h4><p>Modell-Konsens, Top-10-Kandidaten</p></div>
+        <div class="process-step"><p class="process-num">8</p><h4>Validation</h4><p>Test auf der echten Strecke</p></div>
+      </div>
+
+      <p class="quote quote-dark">&bdquo;Models propose candidates, practice laps choose the final setup.&ldquo;</p>
+      <p class="quote-attr">Leitsatz unseres Workflows</p>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="wrap">
+      <p class="eyebrow">Modellvergleich</p>
+      <h2>Das genaueste Modell im Training war nicht das beste</h2>
+      <p>CatBoost und die Tree-Ensembles hatten die niedrigsten Trainingsfehler, aber die größte Lücke zum Testfehler: Sie hatten die Trainingsdaten auswendig gelernt statt das zugrunde liegende Muster zu lernen. Entschieden hat am Ende PolynomialRidge, mit dem kleinsten Generalisierungsgap.</p>
+
+      <table class="model-table">
+        <thead><tr><th>Modell</th><th>CV RMSE</th><th>Test RMSE</th><th>Test R&sup2;</th><th>Gap</th></tr></thead>
         <tbody>
-          <tr><td>Spanien</td><td class="pos">P4</td><td>12</td><td class="delta-flat">+0</td></tr>
-          <tr><td>Niederlande</td><td class="pos">P3</td><td>15</td><td class="delta-up">+1</td></tr>
-          <tr><td>USA</td><td class="pos">P4</td><td>12</td><td class="delta-down">-1</td></tr>
-          <tr><td>Japan</td><td class="pos">P3</td><td>15</td><td class="delta-up">+1</td></tr>
-          <tr><td>Deutschland / Italien</td><td class="pos">P2</td><td>18</td><td class="delta-up">+1</td></tr>
+          <tr class="winner"><td>PolynomialRidge</td><td class="mono">0,416</td><td class="mono">0,414</td><td class="mono">0,999</td><td class="mono">0,013</td></tr>
+          <tr><td>CV-Weighted Ensemble</td><td class="mono">0,426</td><td class="mono">0,424</td><td class="mono">0,999</td><td class="mono">0,204</td></tr>
+          <tr><td>CatBoost</td><td class="mono">0,470</td><td class="mono">0,464</td><td class="mono">0,999</td><td class="mono">0,335</td></tr>
+          <tr><td>HistGradientBoosting</td><td class="mono">0,503</td><td class="mono">0,498</td><td class="mono">0,998</td><td class="mono">0,370</td></tr>
+          <tr><td>ExtraTrees</td><td class="mono">0,603</td><td class="mono">0,600</td><td class="mono">0,998</td><td class="mono">0,489</td></tr>
+          <tr><td>RandomForest</td><td class="mono">0,605</td><td class="mono">0,603</td><td class="mono">0,998</td><td class="mono">0,343</td></tr>
         </tbody>
       </table>
+      <p class="muted" style="font-size:13px; margin-top:10px;">Gap = Test-RMSE minus Train-RMSE. Kleiner ist besser, große Lücken zeigen Überanpassung an die Trainingsdaten.</p>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="wrap">
+      <p class="eyebrow">Erkenntnis</p>
+      <h2>Nur 0,28% der Rundenzeit sind überhaupt beeinflussbar</h2>
+      <p>Der Streckenverlauf selbst erklärt 99,72% der Varianz in den Rundenzeiten. Von dem winzigen Rest, den das Setup überhaupt beeinflussen kann, macht die Motor-Abstimmung mit Abstand den größten Unterschied.</p>
+
+      <p class="bars-label" style="margin-top:28px;">Relative Bedeutung pro Setup-Parameter (bezogen auf Motor = 100%)</p>
+      <div class="bars">
+        <div class="bar-row"><span class="bar-label">Engine Mapping</span><span class="bar-value">100%</span><div class="bar-track"><div class="bar-fill" style="--w:100%"></div></div></div>
+        <div class="bar-row"><span class="bar-label">Differential</span><span class="bar-value">43%</span><div class="bar-track"><div class="bar-fill" style="--w:43%"></div></div></div>
+        <div class="bar-row"><span class="bar-label">Rear Wing</span><span class="bar-value">31%</span><div class="bar-track"><div class="bar-fill" style="--w:31%"></div></div></div>
+        <div class="bar-row"><span class="bar-label">Front Wing</span><span class="bar-value">25%</span><div class="bar-track"><div class="bar-fill" style="--w:25%"></div></div></div>
+        <div class="bar-row"><span class="bar-label">Brake Balance</span><span class="bar-value">18%</span><div class="bar-track"><div class="bar-fill" style="--w:18%"></div></div></div>
+        <div class="bar-row"><span class="bar-label">Suspension</span><span class="bar-value">16%</span><div class="bar-track"><div class="bar-fill" style="--w:16%"></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="wrap">
+      <p class="eyebrow">Reifenmodell</p>
+      <h2>Extra-Soft ist doppelt so schnell verschlissen wie Hard</h2>
+      <p>Aus Praxisdaten haben wir für jede Reifenmischung die lineare Abbaurate über die Stint-Länge modelliert, Grundlage für die Rennstrategie-Optimierung.</p>
 
       <div class="stat-row-light">
-        <div class="stat-light"><p class="stat-num">72</p><p class="stat-label">Punkte über die Saison</p></div>
-        <div class="stat-light"><p class="stat-num">1:23,818</p><p class="stat-label">Schnellste Startzeit im Saisonfinale, Pole Position</p></div>
-        <div class="stat-light"><p class="stat-num">+0,064s</p><p class="stat-label">Vorsprung in der Qualifikation auf den Zweitplatzierten</p></div>
+        <div class="stat-light"><p class="stat-num">-7,9%</p><p class="stat-label">Grip-Verlust pro Runde, Extra Soft</p></div>
+        <div class="stat-light"><p class="stat-num">-4,4%</p><p class="stat-label">Grip-Verlust pro Runde, Soft</p></div>
+        <div class="stat-light"><p class="stat-num">-3,2%</p><p class="stat-label">Grip-Verlust pro Runde, Hard</p></div>
       </div>
     </div>
   </section>
 
   <section class="section section-dark">
     <div class="wrap">
-      <p class="eyebrow">Methodik</p>
-      <h2>Sechs Modelle gegeneinander getestet, keine Blackbox vertraut</h2>
-      <p>Aus Praxisdaten (Setup, Strecke, Rundenzeit) habe ich sechs Regressionsmodelle trainiert und nicht das mit der besten Trainingsgenauigkeit gewählt, sondern das mit der geringsten Lücke zwischen Trainings- und Testfehler. Ein Random-Search über den Setup-Raum lieferte anschließend die Kandidaten für die finalen Praxisrunden.</p>
-
-      <div class="stat-row">
-        <div class="stat"><p class="stat-num">PolynomialRidge</p><p class="stat-label">Bestes Modell: Test-R&sup2; 0,999, kleinste Generalisierungslücke</p></div>
-        <div class="stat"><p class="stat-num">100%</p><p class="stat-label">Relative Bedeutung der Motor-Abstimmung fürs Setup, vor Differential (43%) und Flügeln</p></div>
-        <div class="stat"><p class="stat-num">-7,9%</p><p class="stat-label">Rundenzeitverlust pro Runde auf Extra-Soft-Reifen, gemessen und modelliert</p></div>
-      </div>
-
-      <p class="quote quote-dark">&bdquo;Lowest train error is not enough. Tree ensembles fit the training data extremely well, several show a larger test error and generalization gap.&ldquo;</p>
-      <p class="quote-attr">Aus der Modellvergleichs-Analyse des Teams</p>
+      <p class="eyebrow">Strategie-Optimierung</p>
+      <h2>Die Boxenstopp-Reihenfolge als Optimierungsproblem</h2>
+      <p>Auf Basis des Rundenzeit- und Reifenmodells haben wir die Stint-Planung als dynamisches Programmierungsproblem formuliert: minimiere die Summe aus Stint-Zeiten und Boxenstopp-Verlust, unter der Nebenbedingung, dass die Stint-Länge je Reifenmischung ein zulässiges Maximum nicht überschreitet und die komplette Renndistanz abgedeckt wird. Ein exakter DP-Solver liefert dafür den global optimalen, nicht nur einen naheliegenden Plan.</p>
     </div>
   </section>
 
   <section class="section section-light">
     <div class="wrap">
       <p class="eyebrow">Fazit</p>
-      <h2>Systematik schlägt Bauchgefühl</h2>
-      <p>Am Anfang der Saison gab es keine klare Methode für die Setup-Wahl. Am Ende stand ein reproduzierbarer Workflow: Modell trainieren, Setup-Raum durchsuchen, Kandidaten in der Praxis validieren, Ergebnis einordnen. Das Team hat diesen Prozess über die Saison verfeinert, von der ersten unsicheren Analyse in Spanien bis zur Pole Position im Saisonfinale.</p>
+      <h2>Systematik statt Bauchgefühl</h2>
+      <p>Der größte Lerneffekt war, wie wenig vom Setup überhaupt beeinflussbar ist und wie sehr die Wahl des richtigen Modells statt des genauesten Modells über die Praxistauglichkeit entscheidet. Über die Saison hat sich das Team von Startplatz 4 bis zur Pole Position im Finale vorgearbeitet, mit einem Workflow, der nach jedem Rennen anhand neuer Daten nachjustiert wurde.</p>
       <div class="cta-row" style="margin-top:24px;">
         <a class="btn btn-solid" href="McQueen_Racing_Season_Recap.pdf" target="_blank" rel="noopener">Season Recap lesen (PDF)</a>
       </div>
