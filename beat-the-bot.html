@@ -118,6 +118,18 @@
   .rq-tag{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
   .rq-card p{ font-size:15px; margin:0; }
 
+  .tier-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); margin-top:14px; }
+  @media (max-width:640px){ .tier-grid{ grid-template-columns:1fr; } }
+  .tier{ background:var(--ink); padding:20px 20px 22px; }
+  .tier-tag{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+  .tier h4{ font-family:'Source Serif 4', serif; font-weight:600; font-size:1.05rem; margin:0 0 8px; }
+  .tier p{ font-size:13.5px; color:var(--muted-on-dark); margin:0; }
+
+  .guide-list{ list-style:none; margin:14px 0 0; padding:0; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); }
+  @media (max-width:720px){ .guide-list{ grid-template-columns:1fr 1fr; } }
+  .guide-list li{ background:var(--ink); padding:16px 16px 18px; font-size:13.5px; }
+  .guide-list b{ display:block; font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+
   .stat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); margin-top:28px; }
   @media (max-width:640px){ .stat-row{ grid-template-columns:1fr; } }
   .stat{ background:var(--ink); padding:26px 22px; }
@@ -237,7 +249,36 @@
         </div>
       </div>
 
-      <p style="margin-top:28px;">Aus beiden Quellen entstand ein gewichtetes Lastenheft: jede Anforderung erhält eine Gesamtgewichtung aus Experteninterviews (35%), Wettbewerbsanalyse (35%) und Abgleich mit der ISO/IEC-25010-Norm (30%), auf einer Skala von 0 bis 10.</p>
+      <p class="bars-label" style="margin-top:36px;">Stichprobe &middot; drei Erfahrungsstufen nach qualitativem Sampling</p>
+      <div class="tier-grid">
+        <div class="tier">
+          <p class="tier-tag">Kategorie A</p>
+          <h4>Führungsebene</h4>
+          <p>Mind. 15 Jahre Vertriebserfahrung, leitende Position. Kennt langfristige Trends und die Gründe für neue Technologien im Vertrieb.</p>
+        </div>
+        <div class="tier">
+          <p class="tier-tag">Kategorie B</p>
+          <h4>Mittlere Laufbahn</h4>
+          <p>6 bis 14 Jahre Vertriebserfahrung, fundierte Kenntnis der gelebten Verkaufspraktiken im Tagesgeschäft.</p>
+        </div>
+        <div class="tier">
+          <p class="tier-tag">Kategorie C</p>
+          <h4>Berufseinsteiger</h4>
+          <p>Bis 5 Jahre Berufserfahrung. Bringen die Bedürfnisse und Erwartungen jüngerer Vertriebsmitarbeiter ein.</p>
+        </div>
+      </div>
+
+      <p class="bars-label" style="margin-top:36px;">Interviewleitfaden &middot; vier Themenblöcke</p>
+      <ul class="guide-list">
+        <li><b>a</b>Herausforderungen im aktuellen Verkaufsprozess</li>
+        <li><b>b</b>Stellungnahme zu KI im Vertrieb</li>
+        <li><b>c</b>Überblick über das ideale Trainingstool</li>
+        <li><b>d</b>Abschließendes Feedback</li>
+      </ul>
+
+      <p style="margin-top:28px;">Die Transkripte habe ich mittels qualitativer Inhaltsanalyse nach Kuckartz (2018) in MAXQDA2024 ausgewertet: die Hauptkategorien &bdquo;funktionale&ldquo; und &bdquo;nicht-funktionale Anforderungen&ldquo; deduktiv aus der zweiten Forschungsfrage abgeleitet, die Subkategorien induktiv aus dem Material entwickelt. Als theoretischer Rahmen diente eine in Kooperation mit Prof. Dr. Barbara Dannenmann und weiteren Forschenden erweiterte Version der UTAUT2 (Venkatesh, Thong &amp; Xu 2012), ergänzt um Erkenntnisse von Rodriguez und Peterson (2024) zur Akzeptanz von KI-Technologien.</p>
+
+      <p style="margin-top:20px;">Aus beiden Quellen entstand ein gewichtetes Lastenheft: jede Anforderung erhält eine Gesamtgewichtung aus Experteninterviews (35%), Wettbewerbsanalyse (35%) und Abgleich mit der ISO/IEC-25010-Norm (30%), auf einer Skala von 0 bis 10.</p>
     </div>
   </section>
 
