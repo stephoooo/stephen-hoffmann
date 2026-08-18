@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>McQueen Racing | Team Data Analytics Challenge</title>
+<meta name="description" content="Season Recap von Stephen Hoffmanns Team McQueen Racing bei der TUM Team Data Analytics Challenge: datengetriebenes Setup, Reifenverschleiß-Modell und Rennstrategie-Optimierung.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="McQueen Racing | Team Data Analytics Challenge">
+<meta property="og:description" content="Datengetriebenes Fahrzeug-Setup und Rennstrategie-Optimierung für ein simuliertes Formel-Team.">
+<meta property="og:url" content="https://stephen-hoffmann.vercel.app/mcqueen.html">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23121210'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23FAF9F5' text-anchor='middle'%3ESH%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,500;0,600;1,400;1,500&family=Inter+Tight:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#121210;
+    --ink-2:#1C1B17;
+    --paper:#FAF9F5;
+    --paper-2:#F1EFE8;
+    --line-dark:#38372F;
+    --line-light:#DEDCD2;
+    --text-on-dark:#F5F3EC;
+    --text-on-light:#151410;
+    --muted-on-dark:#9C9A8D;
+    --muted-on-light:#6B695F;
+    --accent:#4A90E2;
+    --accent-soft:#C7DFF7;
+    --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; scrollbar-color:var(--muted-on-light) transparent; scrollbar-width:thin; }
+  @media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; } }
+  ::-webkit-scrollbar{ width:10px; height:10px; }
+  ::-webkit-scrollbar-track{ background:transparent; }
+  ::-webkit-scrollbar-thumb{ background:var(--muted-on-light); border-radius:999px; border:2px solid var(--paper); }
+  ::-webkit-scrollbar-thumb:hover{ background:var(--accent); }
+
+  body{ margin:0; background:var(--paper); color:var(--text-on-light); font-family:'Inter Tight', system-ui, sans-serif; font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  ::selection{ background:var(--accent-soft); color:var(--ink); }
+  a{ color:inherit; text-decoration:none; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+
+  .u-link{ background-image:linear-gradient(currentColor, currentColor); background-position:0 100%; background-repeat:no-repeat; background-size:0% 1px; transition:background-size .25s ease; padding-bottom:1px; }
+  .u-link:focus-visible{ background-size:100% 1px; }
+  @media (hover:hover) and (pointer:fine){ .u-link:hover{ background-size:100% 1px; } }
+
+  .wrap{ max-width:840px; margin:0 auto; padding:0 28px; }
+  .section-dark{ background:var(--ink); color:var(--text-on-dark); }
+  .section-dark .muted{ color:var(--muted-on-dark); }
+  .section-light .muted{ color:var(--muted-on-light); }
+
+  .eyebrow{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); display:flex; align-items:center; gap:8px; margin:0 0 16px; }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--accent); display:inline-block; }
+
+  h1, h2, h3{ font-family:'Source Serif 4', serif; font-weight:500; margin:0; }
+
+  .topbar{ padding:18px 28px; font-family:'IBM Plex Mono', monospace; font-size:13px; background:var(--ink); color:var(--muted-on-dark); }
+  .topbar a{ color:var(--text-on-dark); }
+  .topbar-inner{ max-width:840px; margin:0 auto; display:flex; align-items:center; gap:8px; }
+
+  .hero{ padding:56px 0 60px; }
+  .grade-badge{ display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--accent); border:1px solid var(--line-dark); border-radius:999px; padding:6px 14px; margin-bottom:22px; }
+  h1.title{ font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.01em; margin:0 0 18px; text-wrap:balance; }
+  .subtitle{ font-size:16px; color:var(--muted-on-dark); max-width:58ch; margin:0 0 28px; }
+  .meta-row{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted-on-dark); display:flex; flex-wrap:wrap; gap:6px 18px; margin:0 0 32px; }
+  .cta-row{ display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{ font-family:'IBM Plex Mono', monospace; font-size:13.5px; letter-spacing:.02em; padding:13px 22px; border-radius:2px; display:inline-flex; align-items:center; gap:8px; transition:background .18s ease, color .18s ease, border-color .18s ease, transform 160ms var(--ease-out); }
+  .btn:active{ transform:scale(0.97); }
+  .btn-solid{ background:var(--text-on-dark); color:var(--ink); border:1px solid var(--text-on-dark); }
+  .btn-outline{ border:1px solid var(--line-dark); color:var(--text-on-dark); }
+  @media (hover:hover) and (pointer:fine){ .btn-solid:hover{ background:var(--accent); border-color:var(--accent); color:var(--text-on-dark); } .btn-outline:hover{ border-color:var(--accent); color:var(--accent); } }
+
+  .section{ padding:52px 0; border-top:1px solid var(--line-light); }
+  .section-dark{ border-top-color:var(--line-dark); }
+  .section h2{ font-size:clamp(1.5rem,3vw,1.9rem); letter-spacing:-.01em; margin:0 0 24px; }
+  .section p{ max-width:68ch; }
+
+  .race-table{ width:100%; border-collapse:collapse; margin-top:8px; font-size:14px; }
+  .race-table th, .race-table td{ text-align:left; padding:10px 10px 10px 0; border-bottom:1px solid var(--line-dark); }
+  .race-table th{ font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase; letter-spacing:.05em; color:var(--muted-on-dark); font-weight:500; }
+  .race-table td.pos{ font-family:'IBM Plex Mono', monospace; color:var(--accent); font-weight:600; }
+  .race-table td.delta-up{ color:#5FBF8F; font-family:'IBM Plex Mono', monospace; }
+  .race-table td.delta-down{ color:#E2694A; font-family:'IBM Plex Mono', monospace; }
+  .race-table td.delta-flat{ color:var(--muted-on-dark); font-family:'IBM Plex Mono', monospace; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); margin-top:28px; }
+  @media (max-width:640px){ .stat-row{ grid-template-columns:1fr; } }
+  .stat{ background:var(--ink); padding:26px 22px; }
+  .stat-num{ font-family:'IBM Plex Mono', monospace; font-size:2rem; color:var(--accent); line-height:1; margin-bottom:10px; }
+  .stat-label{ font-size:13.5px; color:var(--muted-on-dark); }
+
+  .stat-row-light{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-light); border:1px solid var(--line-light); margin-top:28px; }
+  @media (max-width:640px){ .stat-row-light{ grid-template-columns:1fr; } }
+  .stat-light{ background:var(--paper-2); padding:22px 20px; }
+  .stat-light .stat-num{ color:var(--accent); font-size:1.5rem; }
+  .stat-light .stat-label{ color:var(--muted-on-light); font-size:13px; }
+
+  .quote{ font-family:'Source Serif 4', serif; font-style:italic; font-size:1.1rem; line-height:1.5; border-left:2px solid var(--accent-soft); padding-left:16px; margin:24px 0; }
+  .quote-dark{ border-left-color:var(--accent); }
+  .quote-attr{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted-on-light); margin-top:8px; }
+
+  footer{ padding:44px 0; }
+  .footer-links{ display:flex; gap:18px; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:13px; }
+  .footer-meta{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted-on-dark); margin-top:18px; }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="u-link">&larr; Zurück zur Startseite</a>
+  </div>
+</nav>
+
+<header class="hero section-dark">
+  <div class="wrap">
+    <p class="grade-badge">TUM Team Analytics Challenge</p>
+    <p class="eyebrow">Consumer Science &middot; TUM</p>
+    <h1 class="title">McQueen Racing: Datengetriebenes Setup statt Bauchgefühl</h1>
+    <p class="subtitle">Als Data Principal &amp; Systems Director habe ich für ein simuliertes Vier-Personen-Racing-Team Fahrzeug-Setup und Rennstrategie über fünf Rennen aus historischen Daten optimiert statt aus Erfahrungswerten zu raten.</p>
+    <p class="meta-row">
+      <span>Team: Yufei Xu, Stephen Hoffmann, Thomas Rehrl, Andreas Lammers</span>
+      <span>&middot;</span>
+      <span>Saison 2026, 5 Rennen</span>
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="McQueen_Racing_Season_Recap.pdf" target="_blank" rel="noopener">Season Recap (PDF)</a>
+      <a class="btn btn-outline" href="index.html#projekte">Zu den Projekten</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="section section-light">
+    <div class="wrap">
+      <p class="eyebrow">Ergebnisse</p>
+      <h2>Von Platz 4 an die Spitze des Feldes</h2>
+      <p>Über fünf Rennen hat sich das Team von Mittelfeldplätzen bis zur schnellsten Startaufstellung im Saisonfinale vorgearbeitet, mit einem Fahrzeug-Setup, das nach jedem Rennen anhand neuer Daten nachjustiert wurde.</p>
+
+      <table class="race-table">
+        <thead><tr><th>Rennen</th><th>Ergebnis</th><th>Punkte</th><th>Trend</th></tr></thead>
+        <tbody>
+          <tr><td>Spanien</td><td class="pos">P4</td><td>12</td><td class="delta-flat">+0</td></tr>
+          <tr><td>Niederlande</td><td class="pos">P3</td><td>15</td><td class="delta-up">+1</td></tr>
+          <tr><td>USA</td><td class="pos">P4</td><td>12</td><td class="delta-down">-1</td></tr>
+          <tr><td>Japan</td><td class="pos">P3</td><td>15</td><td class="delta-up">+1</td></tr>
+          <tr><td>Deutschland / Italien</td><td class="pos">P2</td><td>18</td><td class="delta-up">+1</td></tr>
+        </tbody>
+      </table>
+
+      <div class="stat-row-light">
+        <div class="stat-light"><p class="stat-num">72</p><p class="stat-label">Punkte über die Saison</p></div>
+        <div class="stat-light"><p class="stat-num">1:23,818</p><p class="stat-label">Schnellste Startzeit im Saisonfinale, Pole Position</p></div>
+        <div class="stat-light"><p class="stat-num">+0,064s</p><p class="stat-label">Vorsprung in der Qualifikation auf den Zweitplatzierten</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="wrap">
+      <p class="eyebrow">Methodik</p>
+      <h2>Sechs Modelle gegeneinander getestet, keine Blackbox vertraut</h2>
+      <p>Aus Praxisdaten (Setup, Strecke, Rundenzeit) habe ich sechs Regressionsmodelle trainiert und nicht das mit der besten Trainingsgenauigkeit gewählt, sondern das mit der geringsten Lücke zwischen Trainings- und Testfehler. Ein Random-Search über den Setup-Raum lieferte anschließend die Kandidaten für die finalen Praxisrunden.</p>
+
+      <div class="stat-row">
+        <div class="stat"><p class="stat-num">PolynomialRidge</p><p class="stat-label">Bestes Modell: Test-R&sup2; 0,999, kleinste Generalisierungslücke</p></div>
+        <div class="stat"><p class="stat-num">100%</p><p class="stat-label">Relative Bedeutung der Motor-Abstimmung fürs Setup, vor Differential (43%) und Flügeln</p></div>
+        <div class="stat"><p class="stat-num">-7,9%</p><p class="stat-label">Rundenzeitverlust pro Runde auf Extra-Soft-Reifen, gemessen und modelliert</p></div>
+      </div>
+
+      <p class="quote quote-dark">&bdquo;Lowest train error is not enough. Tree ensembles fit the training data extremely well, several show a larger test error and generalization gap.&ldquo;</p>
+      <p class="quote-attr">Aus der Modellvergleichs-Analyse des Teams</p>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="wrap">
+      <p class="eyebrow">Fazit</p>
+      <h2>Systematik schlägt Bauchgefühl</h2>
+      <p>Am Anfang der Saison gab es keine klare Methode für die Setup-Wahl. Am Ende stand ein reproduzierbarer Workflow: Modell trainieren, Setup-Raum durchsuchen, Kandidaten in der Praxis validieren, Ergebnis einordnen. Das Team hat diesen Prozess über die Saison verfeinert, von der ersten unsicheren Analyse in Spanien bis zur Pole Position im Saisonfinale.</p>
+      <div class="cta-row" style="margin-top:24px;">
+        <a class="btn btn-solid" href="McQueen_Racing_Season_Recap.pdf" target="_blank" rel="noopener">Season Recap lesen (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="section-dark">
+  <div class="wrap">
+    <div class="footer-links">
+      <a class="u-link" href="index.html">Zur Startseite</a>
+      <a class="u-link" href="mailto:stephen.ernst.hoffmann@gmail.com">E-Mail schreiben</a>
+      <a class="u-link" href="https://linkedin.com/in/stephen-e-hoffmann" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="footer-meta">Stephen Hoffmann &middot; München</p>
+  </div>
+</footer>
+
+</body>
+</html>
