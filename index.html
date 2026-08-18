@@ -62,6 +62,12 @@
 
   ::selection{ background:var(--accent-soft); color:var(--ink); }
 
+  html{ scrollbar-color:var(--muted-on-light) transparent; scrollbar-width:thin; }
+  ::-webkit-scrollbar{ width:10px; height:10px; }
+  ::-webkit-scrollbar-track{ background:transparent; }
+  ::-webkit-scrollbar-thumb{ background:var(--muted-on-light); border-radius:999px; border:2px solid var(--paper); }
+  ::-webkit-scrollbar-thumb:hover{ background:var(--accent); }
+
   a{ color:inherit; text-decoration:none; }
   .u-link{
     background-image:linear-gradient(currentColor, currentColor);
