@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beat the Bot | Bachelorarbeit von Stephen Hoffmann</title>
+<meta name="description" content="Zusammenfassung der Bachelorarbeit von Stephen Hoffmann (Note 1,0): Anforderungen für den Praxiseinsatz des VR/KI-Verhandlungstrainings „Beat the Bot“, erhoben über eine Wettbewerbsanalyse und 14 Experteninterviews.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Beat the Bot | Bachelorarbeit von Stephen Hoffmann">
+<meta property="og:description" content="Wettbewerbsanalyse und 14 Experteninterviews zu den Anforderungen an ein VR/KI-gestütztes Verhandlungstraining. Note 1,0.">
+<meta property="og:url" content="https://stephen-hoffmann.vercel.app/beat-the-bot.html">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23121210'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23FAF9F5' text-anchor='middle'%3ESH%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,500;0,600;1,400;1,500&family=Inter+Tight:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#121210;
+    --ink-2:#1C1B17;
+    --paper:#FAF9F5;
+    --paper-2:#F1EFE8;
+    --line-dark:#38372F;
+    --line-light:#DEDCD2;
+    --text-on-dark:#F5F3EC;
+    --text-on-light:#151410;
+    --muted-on-dark:#9C9A8D;
+    --muted-on-light:#6B695F;
+    --accent:#4A90E2;
+    --accent-soft:#C7DFF7;
+    --max:760px;
+    --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; scrollbar-color:var(--muted-on-light) transparent; scrollbar-width:thin; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+  }
+  ::-webkit-scrollbar{ width:10px; height:10px; }
+  ::-webkit-scrollbar-track{ background:transparent; }
+  ::-webkit-scrollbar-thumb{ background:var(--muted-on-light); border-radius:999px; border:2px solid var(--paper); }
+  ::-webkit-scrollbar-thumb:hover{ background:var(--accent); }
+
+  body{
+    margin:0; background:var(--paper); color:var(--text-on-light);
+    font-family:'Inter Tight', system-ui, sans-serif;
+    font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--accent-soft); color:var(--ink); }
+  a{ color:inherit; text-decoration:none; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+
+  .u-link{
+    background-image:linear-gradient(currentColor, currentColor);
+    background-position:0 100%; background-repeat:no-repeat;
+    background-size:0% 1px; transition:background-size .25s ease; padding-bottom:1px;
+  }
+  .u-link:focus-visible{ background-size:100% 1px; }
+  @media (hover:hover) and (pointer:fine){ .u-link:hover{ background-size:100% 1px; } }
+
+  .wrap{ max-width:840px; margin:0 auto; padding:0 28px; }
+  .section-dark{ background:var(--ink); color:var(--text-on-dark); }
+  .section-dark .muted{ color:var(--muted-on-dark); }
+  .section-light .muted{ color:var(--muted-on-light); }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent); display:flex; align-items:center; gap:8px; margin:0 0 16px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--accent); display:inline-block; }
+
+  h1, h2, h3{ font-family:'Source Serif 4', serif; font-weight:500; margin:0; }
+
+  .topbar{
+    padding:18px 28px; font-family:'IBM Plex Mono', monospace; font-size:13px;
+    background:var(--ink); color:var(--muted-on-dark);
+  }
+  .topbar a{ color:var(--text-on-dark); }
+  .topbar-inner{ max-width:840px; margin:0 auto; display:flex; align-items:center; gap:8px; }
+
+  .hero{ padding:56px 0 60px; }
+  .grade-badge{
+    display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px; color:var(--accent); border:1px solid var(--line-dark); border-radius:999px;
+    padding:6px 14px; margin-bottom:22px;
+  }
+  h1.title{ font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.01em; margin:0 0 18px; text-wrap:balance; }
+  .subtitle{ font-size:16px; color:var(--muted-on-dark); max-width:58ch; margin:0 0 28px; }
+  .meta-row{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted-on-dark); display:flex; flex-wrap:wrap; gap:6px 18px; margin:0 0 32px; }
+  .cta-row{ display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; letter-spacing:.02em;
+    padding:13px 22px; border-radius:2px; display:inline-flex; align-items:center; gap:8px;
+    transition:background .18s ease, color .18s ease, border-color .18s ease, transform 160ms var(--ease-out);
+  }
+  .btn:active{ transform:scale(0.97); }
+  .btn-solid{ background:var(--text-on-dark); color:var(--ink); border:1px solid var(--text-on-dark); }
+  .btn-outline{ border:1px solid var(--line-dark); color:var(--text-on-dark); }
+  @media (hover:hover) and (pointer:fine){
+    .btn-solid:hover{ background:var(--accent); border-color:var(--accent); color:var(--text-on-dark); }
+    .btn-outline:hover{ border-color:var(--accent); color:var(--accent); }
+  }
+
+  .section{ padding:56px 0; border-top:1px solid var(--line-light); }
+  .section-dark{ border-top-color:var(--line-dark); }
+  .section h2{ font-size:clamp(1.5rem,3vw,1.9rem); letter-spacing:-.01em; margin:0 0 28px; }
+  .section p{ max-width:68ch; }
+  .lede{ font-family:'Source Serif 4', serif; font-style:italic; font-weight:400; font-size:1.15rem; line-height:1.55; max-width:60ch; }
+
+  .rq-grid{ display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:28px; }
+  @media (max-width:640px){ .rq-grid{ grid-template-columns:1fr; } }
+  .rq-card{ border:1px solid var(--line-light); padding:22px; }
+  .rq-tag{ font-family:'IBM Plex Mono', monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .rq-card p{ font-size:15px; margin:0; }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); margin-top:28px; }
+  @media (max-width:640px){ .stat-row{ grid-template-columns:1fr; } }
+  .stat{ background:var(--ink); padding:26px 22px; }
+  .stat-num{ font-family:'IBM Plex Mono', monospace; font-size:2rem; color:var(--accent); line-height:1; margin-bottom:10px; }
+  .stat-label{ font-size:13.5px; color:var(--muted-on-dark); }
+
+  .funnel{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:28px; font-family:'IBM Plex Mono', monospace; font-size:13px; }
+  .funnel-step{ border:1px solid var(--line-light); padding:14px 18px; text-align:center; flex:1; min-width:120px; }
+  .funnel-step b{ display:block; font-size:1.3rem; color:var(--accent); margin-bottom:4px; }
+  .funnel-arrow{ color:var(--muted-on-light); }
+  @media (max-width:640px){ .funnel{ flex-direction:column; } .funnel-arrow{ transform:rotate(90deg); } }
+
+  .bars{ margin-top:8px; }
+  .bar-row{ display:grid; grid-template-columns:1fr auto; gap:14px; align-items:center; padding:10px 0; border-top:1px solid var(--line-light); }
+  .bar-row:first-child{ border-top:none; }
+  .bar-label{ font-size:14.5px; }
+  .bar-track{ grid-column:1/-1; height:6px; background:var(--paper-2); position:relative; margin-top:2px; }
+  .bar-fill{ position:absolute; inset:0; width:var(--w); background:var(--accent); }
+  .bar-value{ font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--muted-on-light); white-space:nowrap; }
+  .bars-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.04em; color:var(--muted-on-light); margin:0 0 6px; }
+
+  .nfa-row{ display:grid; grid-template-columns:1fr auto; gap:14px; align-items:center; padding:9px 0; border-top:1px solid var(--line-dark); }
+  .nfa-row:first-child{ border-top:none; }
+  .nfa-label{ font-size:14px; }
+  .nfa-track{ grid-column:1/-1; height:5px; background:var(--ink-2); position:relative; }
+  .nfa-fill{ position:absolute; inset:0; width:var(--w); background:var(--accent); }
+  .nfa-value{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted-on-dark); white-space:nowrap; }
+
+  .quote{
+    font-family:'Source Serif 4', serif; font-style:italic; font-size:1.1rem; line-height:1.5;
+    border-left:2px solid var(--accent-soft); padding-left:16px; margin:24px 0;
+  }
+  .quote-attr{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted-on-light); margin-top:8px; }
+
+  footer{ padding:44px 0; }
+  .footer-links{ display:flex; gap:18px; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:13px; }
+  .footer-meta{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted-on-dark); margin-top:18px; }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="u-link">&larr; Zurück zur Startseite</a>
+  </div>
+</nav>
+
+<header class="hero section-dark">
+  <div class="wrap">
+    <p class="grade-badge">Bachelorarbeit &middot; Note 1,0</p>
+    <p class="eyebrow">Wirtschaftspsychologie &middot; Hochschule Neu-Ulm</p>
+    <h1 class="title">Digitale Transformation im Vertrieb: Anforderungen an das VR/KI-Verhandlungstraining &bdquo;Beat the Bot&ldquo;</h1>
+    <p class="subtitle">Was ein KI- und VR-gestütztes Verhandlungstraining leisten muss, damit Unternehmen es tatsächlich einsetzen. Untersucht über eine Wettbewerbsanalyse von sechs Tools und 14 Experteninterviews aus dem B2B-Vertrieb.</p>
+    <p class="meta-row">
+      <span>Betreuung: Prof. Dr. Barbara Dannenmann</span>
+      <span>&middot;</span>
+      <span>Abgabe: 11.08.2024</span>
+      <span>&middot;</span>
+      <span>ISPIM Osaka &amp; GSSI Best Doctoral Paper Award</span>
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="Bachelorarbeit_Beat_the_Bot.pdf" target="_blank" rel="noopener">Vollständige Arbeit (PDF)</a>
+      <a class="btn btn-outline" href="index.html#erfahrung">Zum Lebenslauf</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="section section-light">
+    <div class="wrap">
+      <p class="eyebrow">Worum es geht</p>
+      <h2>Rollenspiele sind teuer. KI/VR ist die Alternative, aber noch nicht praxisreif.</h2>
+      <p class="lede">Verkaufsschulungen laufen meist über klassische Rollenspiele: wirksam, aber kostspielig, zeitaufwändig und für viele Teilnehmende stressbehaftet. &bdquo;Beat the Bot&ldquo;, ein von Prof. Dr. Barbara Dannenmann entwickeltes VR/KI-Trainingstool, bietet eine vielversprechende Alternative. Seine Wirksamkeit war zu Beginn meiner Arbeit bereits im Hochschulkontext nachgewiesen.</p>
+      <p>Meine Bachelorarbeit untersucht, was fehlt, damit ein solches Tool auch in echten Unternehmensumgebungen akzeptiert wird: welche Voraussetzungen ein Transfer von der Hochschule in die Praxis erfordert, und welche funktionalen und nicht-funktionalen Anforderungen dafür aus Sicht von Vertriebspraktikern erfüllt sein müssen.</p>
+
+      <div class="rq-grid">
+        <div class="rq-card">
+          <p class="rq-tag">Forschungsfrage 1</p>
+          <p>Welche Voraussetzungen müssen erfüllt sein, um einen Transfer von &bdquo;Beat the Bot&ldquo; in echte Vertriebsumgebungen zu ermöglichen?</p>
+        </div>
+        <div class="rq-card">
+          <p class="rq-tag">Forschungsfrage 2</p>
+          <p>Welche funktionalen und nicht-funktionalen Anforderungen müssen hierfür aus Praxissicht erfüllt sein?</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="wrap">
+      <p class="eyebrow">Methodik</p>
+      <h2>Zwei Datenquellen, ein Lastenheft</h2>
+      <p>Um die Forschungsfragen zu beantworten, habe ich zwei sich ergänzende Methoden kombiniert: eine Wettbewerbsanalyse, um zu sehen, was der Markt bereits bietet, und semistrukturierte Experteninterviews, um zu verstehen, was Vertriebspraktiker tatsächlich brauchen.</p>
+
+      <p class="bars-label" style="margin-top:32px;">Wettbewerbsanalyse &middot; Selektionsprozess</p>
+      <div class="funnel">
+        <div class="funnel-step"><b>210</b>recherchierte Tools</div>
+        <span class="funnel-arrow">&rarr;</span>
+        <div class="funnel-step"><b>9</b>nach Kategorie selektiert</div>
+        <span class="funnel-arrow">&rarr;</span>
+        <div class="funnel-step"><b>6</b>inkl. Beat the Bot final analysiert</div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat">
+          <p class="stat-num">14</p>
+          <p class="stat-label">Experteninterviews, semistrukturiert, Ende April-Ende Mai 2024</p>
+        </div>
+        <div class="stat">
+          <p class="stat-num">3</p>
+          <p class="stat-label">Erfahrungsstufen befragt: Führungsebene, mittlere Laufbahn, Berufseinsteiger</p>
+        </div>
+        <div class="stat">
+          <p class="stat-num">19</p>
+          <p class="stat-label">identifizierte Anforderungen, ausgewertet mit MAXQDA nach Kuckartz</p>
+        </div>
+      </div>
+
+      <p style="margin-top:28px;">Aus beiden Quellen entstand ein gewichtetes Lastenheft: jede Anforderung erhält eine Gesamtgewichtung aus Experteninterviews (35%), Wettbewerbsanalyse (35%) und Abgleich mit der ISO/IEC-25010-Norm (30%), auf einer Skala von 0 bis 10.</p>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="wrap">
+      <p class="eyebrow">Ergebnisse</p>
+      <h2>Was ein Tool wirklich braucht</h2>
+      <p>Am wichtigsten war den befragten Praktikern nicht mehr Technik, sondern Anpassbarkeit: Individualisierung und die Simulation verschiedener Verhandlungssituationen liegen mit deutlichem Abstand vorn.</p>
+
+      <p class="bars-label" style="margin-top:32px;">Funktionale Anforderungen &middot; Gesamtgewichtung (0-10)</p>
+      <div class="bars">
+        <div class="bar-row">
+          <span class="bar-label">Individualisierung</span>
+          <span class="bar-value">8,75</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:87.5%"></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Simulation verschiedenster Situationen</span>
+          <span class="bar-value">8,25</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:82.5%"></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Feedback-Funktion</span>
+          <span class="bar-value">5,28</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:52.8%"></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Spracheingabe</span>
+          <span class="bar-value">5,00</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:50%"></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Darstellung des Verhandlungsrahmens</span>
+          <span class="bar-value">4,58</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:45.8%"></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Schulungsinhalte</span>
+          <span class="bar-value">4,25</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:42.5%"></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">LLM integriert</span>
+          <span class="bar-value">4,17</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:41.7%"></div></div>
+        </div>
+      </div>
+
+      <p class="quote">&bdquo;Ein gewisses Maß an Individualisierung, dass man wirklich das Gefühl hat, in einer realen Umgebung zu sein&ldquo;</p>
+      <p class="quote-attr">Jürgen, Senior Vice President Sales, Metallverarbeitung, 42</p>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="wrap">
+      <p class="eyebrow">Ergebnisse</p>
+      <h2>Vertrauen entscheidet, nicht Technik-Begeisterung</h2>
+      <p>Bei den nicht-funktionalen Anforderungen dominiert ein Thema klar: Sicherheit. Häufiger als jede andere Qualitätsanforderung ging es den Befragten um Datenschutz, Serverstandort und Transparenz, deutlich vor spielerischer Gestaltung oder wahrgenommener KI-Intelligenz.</p>
+
+      <p class="bars-label" style="margin-top:32px;">Nicht-funktionale Anforderungen &middot; Anteil an allen Nennungen</p>
+      <div class="bars">
+        <div class="nfa-row">
+          <span class="nfa-label">Sicherheit</span>
+          <span class="nfa-value">13,2%</span>
+          <div class="nfa-track"><div class="nfa-fill" style="--w:100%"></div></div>
+        </div>
+        <div class="nfa-row">
+          <span class="nfa-label">Realistische Darstellung</span>
+          <span class="nfa-value">10,15%</span>
+          <div class="nfa-track"><div class="nfa-fill" style="--w:77%"></div></div>
+        </div>
+        <div class="nfa-row">
+          <span class="nfa-label">Wirtschaftliche Effizienz</span>
+          <span class="nfa-value">7,87%</span>
+          <div class="nfa-track"><div class="nfa-fill" style="--w:60%"></div></div>
+        </div>
+        <div class="nfa-row">
+          <span class="nfa-label">Unterhaltsamkeit</span>
+          <span class="nfa-value">1,02%</span>
+          <div class="nfa-track"><div class="nfa-fill" style="--w:8%"></div></div>
+        </div>
+      </div>
+
+      <p class="quote">&bdquo;Und man müsste wissen, wo die Daten gespeichert sind und wem sie dann zur Verfügung stehen.&ldquo;</p>
+      <p class="quote-attr">Jürgen, Senior Vice President Sales</p>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="wrap">
+      <p class="eyebrow">Fazit</p>
+      <h2>Ein Lastenheft, kein fertiges Produkt</h2>
+      <p>Die Arbeit schließt mit der Feststellung, dass die erzielten Ergebnisse eine vielversprechende Grundlage für die Weiterentwicklung eines VR/KI-basierten Verhandlungstrainingstools bilden. Statt eines weiteren Prototyps liefert sie das, was vorher fehlte: ein aus echten Vertriebspraktikern und dem bestehenden Markt abgeleitetes, gewichtetes Lastenheft, das zeigt, worauf es bei einem Praxis-Rollout wirklich ankommt.</p>
+      <p>Die vollständige Arbeit inklusive Literaturverzeichnis, Interviewleitfaden, Kodierbaum und Lastenheft steht als PDF zum Download bereit.</p>
+      <div class="cta-row" style="margin-top:24px;">
+        <a class="btn btn-solid" href="Bachelorarbeit_Beat_the_Bot.pdf" target="_blank" rel="noopener">Vollständige Arbeit lesen (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="section-dark">
+  <div class="wrap">
+    <div class="footer-links">
+      <a class="u-link" href="index.html">Zur Startseite</a>
+      <a class="u-link" href="mailto:stephen.ernst.hoffmann@gmail.com">E-Mail schreiben</a>
+      <a class="u-link" href="https://linkedin.com/in/stephen-e-hoffmann" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="footer-meta">Stephen Hoffmann &middot; München</p>
+  </div>
+</footer>
+
+</body>
+</html>
