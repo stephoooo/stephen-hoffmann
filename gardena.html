@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zisternen-Konzeptstudie | Marktforschung für GARDENA</title>
+<meta name="description" content="Marktforschungsseminar von Stephen Hoffmann und Team (Note 1,0): Ist-Zustand, Customer Journey und Produktkonzept für unterirdische Regenwasserzisternen, erhoben über 217 Befragte für GARDENA.">
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zisternen-Konzeptstudie | Marktforschung für GARDENA">
+<meta property="og:description" content="Ist-Zustand, Customer Journey und Produktkonzept für unterirdische Regenwasserzisternen, erhoben über 217 Befragte. Note 1,0.">
+<meta property="og:url" content="https://stephen-hoffmann.vercel.app/gardena.html">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23121210'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' fill='%23FAF9F5' text-anchor='middle'%3ESH%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,500;0,600;1,400;1,500&family=Inter+Tight:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#121210;
+    --ink-2:#1C1B17;
+    --paper:#FAF9F5;
+    --paper-2:#F1EFE8;
+    --line-dark:#38372F;
+    --line-light:#DEDCD2;
+    --text-on-dark:#F5F3EC;
+    --text-on-light:#151410;
+    --muted-on-dark:#9C9A8D;
+    --muted-on-light:#6B695F;
+    --accent:#4A90E2;
+    --accent-soft:#C7DFF7;
+    --max:760px;
+    --ease-out:cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; scrollbar-color:var(--muted-on-light) transparent; scrollbar-width:thin; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; }
+  }
+  ::-webkit-scrollbar{ width:10px; height:10px; }
+  ::-webkit-scrollbar-track{ background:transparent; }
+  ::-webkit-scrollbar-thumb{ background:var(--muted-on-light); border-radius:999px; border:2px solid var(--paper); }
+  ::-webkit-scrollbar-thumb:hover{ background:var(--accent); }
+
+  body{
+    margin:0; background:var(--paper); color:var(--text-on-light);
+    font-family:'Inter Tight', system-ui, sans-serif;
+    font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--accent-soft); color:var(--ink); }
+  a{ color:inherit; text-decoration:none; }
+  a:focus-visible, button:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+
+  .u-link{
+    background-image:linear-gradient(currentColor, currentColor);
+    background-position:0 100%; background-repeat:no-repeat;
+    background-size:0% 1px; transition:background-size .25s ease; padding-bottom:1px;
+  }
+  .u-link:focus-visible{ background-size:100% 1px; }
+  @media (hover:hover) and (pointer:fine){ .u-link:hover{ background-size:100% 1px; } }
+
+  .wrap{ max-width:840px; margin:0 auto; padding:0 28px; }
+  .section-dark{ background:var(--ink); color:var(--text-on-dark); }
+  .section-dark .muted{ color:var(--muted-on-dark); }
+  .section-light .muted{ color:var(--muted-on-light); }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12.5px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent); display:flex; align-items:center; gap:8px; margin:0 0 16px;
+  }
+  .eyebrow::before{ content:""; width:7px; height:7px; background:var(--accent); display:inline-block; }
+
+  h1, h2, h3{ font-family:'Source Serif 4', serif; font-weight:500; margin:0; }
+
+  .topbar{
+    padding:18px 28px; font-family:'IBM Plex Mono', monospace; font-size:13px;
+    background:var(--ink); color:var(--muted-on-dark);
+  }
+  .topbar a{ color:var(--text-on-dark); }
+  .topbar-inner{ max-width:840px; margin:0 auto; display:flex; align-items:center; gap:8px; }
+
+  .hero{ padding:56px 0 60px; }
+  .grade-badge{
+    display:inline-flex; align-items:center; gap:8px; font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px; color:var(--accent); border:1px solid var(--line-dark); border-radius:999px;
+    padding:6px 14px; margin-bottom:22px;
+  }
+  h1.title{ font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08; letter-spacing:-.01em; margin:0 0 18px; text-wrap:balance; }
+  .subtitle{ font-size:16px; color:var(--muted-on-dark); max-width:58ch; margin:0 0 28px; }
+  .meta-row{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted-on-dark); display:flex; flex-wrap:wrap; gap:6px 18px; margin:0 0 32px; }
+  .cta-row{ display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{
+    font-family:'IBM Plex Mono', monospace; font-size:13.5px; letter-spacing:.02em;
+    padding:13px 22px; border-radius:2px; display:inline-flex; align-items:center; gap:8px;
+    transition:background .18s ease, color .18s ease, border-color .18s ease, transform 160ms var(--ease-out);
+  }
+  .btn:active{ transform:scale(0.97); }
+  .btn-solid{ background:var(--text-on-dark); color:var(--ink); border:1px solid var(--text-on-dark); }
+  .btn-outline{ border:1px solid var(--line-dark); color:var(--text-on-dark); }
+  @media (hover:hover) and (pointer:fine){
+    .btn-solid:hover{ background:var(--accent); border-color:var(--accent); color:var(--text-on-dark); }
+    .btn-outline:hover{ border-color:var(--accent); color:var(--accent); }
+  }
+
+  .section{ padding:56px 0; border-top:1px solid var(--line-light); }
+  .section-dark{ border-top-color:var(--line-dark); }
+  .section h2{ font-size:clamp(1.5rem,3vw,1.9rem); letter-spacing:-.01em; margin:0 0 28px; }
+  .section p{ max-width:68ch; }
+  .lede{ font-family:'Source Serif 4', serif; font-style:italic; font-weight:400; font-size:1.15rem; line-height:1.55; max-width:60ch; }
+
+  .tier-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); margin-top:14px; }
+  @media (max-width:640px){ .tier-grid{ grid-template-columns:1fr; } }
+  .tier{ background:var(--ink); padding:20px 20px 22px; }
+  .tier-tag{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+  .tier h4{ font-family:'Source Serif 4', serif; font-weight:600; font-size:1.05rem; margin:0 0 8px; }
+  .tier p{ font-size:13.5px; color:var(--muted-on-dark); margin:0; }
+
+  .process{ display:flex; align-items:flex-start; margin:32px 0 8px; }
+  .process-step{ flex:1; position:relative; padding-top:26px; text-align:left; }
+  .process-step::before{
+    content:""; position:absolute; top:8px; left:0; right:0; height:1px; background:var(--line-dark);
+  }
+  .process-step::after{
+    content:""; position:absolute; top:2px; left:0; width:13px; height:13px; border-radius:50%;
+    background:var(--ink); border:2px solid var(--accent);
+  }
+  .process-step:first-child::before{ left:6px; }
+  .process-step:last-child::before{ right:calc(100% - 6px); }
+  .process-num{ font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--accent); margin:0 0 6px; }
+  .process-step h4{ font-family:'Source Serif 4', serif; font-weight:600; font-size:.95rem; margin:0 0 6px; padding-right:10px; }
+  .process-step p{ font-size:12px; color:var(--muted-on-dark); margin:0; padding-right:12px; }
+  @media (max-width:820px){
+    .process{ flex-direction:column; gap:22px; }
+    .process-step{ padding-top:0; padding-left:26px; }
+    .process-step::before{ top:0; bottom:0; left:5px; right:auto; width:1px; height:auto; }
+    .process-step:first-child::before, .process-step:last-child::before{ left:5px; right:auto; }
+    .process-step::after{ top:2px; left:0; }
+    .process-step h4, .process-step p{ padding-right:0; }
+  }
+
+  .stat-row{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-dark); border:1px solid var(--line-dark); margin-top:28px; }
+  @media (max-width:640px){ .stat-row{ grid-template-columns:1fr; } }
+  .stat{ background:var(--ink); padding:26px 22px; }
+  .stat-num{ font-family:'IBM Plex Mono', monospace; font-size:2rem; color:var(--accent); line-height:1; margin-bottom:10px; }
+  .stat-label{ font-size:13.5px; color:var(--muted-on-dark); }
+
+  .stat-row-light{ display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line-light); border:1px solid var(--line-light); margin-top:28px; }
+  @media (max-width:640px){ .stat-row-light{ grid-template-columns:1fr; } }
+  .stat-light{ background:var(--paper-2); padding:26px 22px; }
+  .stat-light .stat-num{ color:var(--accent); }
+  .stat-light .stat-label{ color:var(--muted-on-light); }
+
+  .bars{ margin-top:8px; }
+  .bar-row{ display:grid; grid-template-columns:1fr auto; gap:14px; align-items:center; padding:10px 0; border-top:1px solid var(--line-light); }
+  .bar-row:first-child{ border-top:none; }
+  .bar-label{ font-size:14.5px; }
+  .bar-track{ grid-column:1/-1; height:6px; background:var(--paper-2); position:relative; margin-top:2px; }
+  .bar-fill{ position:absolute; inset:0; width:var(--w); background:var(--accent); }
+  .bar-value{ font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--muted-on-light); white-space:nowrap; }
+  .bars-label{ font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:.04em; color:var(--muted-on-light); margin:0 0 6px; }
+
+  .nfa-row{ display:grid; grid-template-columns:1fr auto; gap:14px; align-items:center; padding:9px 0; border-top:1px solid var(--line-dark); }
+  .nfa-row:first-child{ border-top:none; }
+  .nfa-label{ font-size:14px; }
+  .nfa-track{ grid-column:1/-1; height:5px; background:var(--ink-2); position:relative; }
+  .nfa-fill{ position:absolute; inset:0; width:var(--w); background:var(--accent); }
+  .nfa-value{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted-on-dark); white-space:nowrap; }
+
+  .quote{
+    font-family:'Source Serif 4', serif; font-style:italic; font-size:1.1rem; line-height:1.5;
+    border-left:2px solid var(--accent-soft); padding-left:16px; margin:24px 0;
+  }
+  .quote-attr{ font-family:'IBM Plex Mono', monospace; font-size:12.5px; color:var(--muted-on-light); margin-top:8px; }
+  .quote-dark{ border-left-color:var(--accent); }
+
+  .concl-grid{ display:flex; flex-wrap:wrap; gap:1px; background:var(--line-light); border:1px solid var(--line-light); margin-top:28px; }
+  .concl-item{ background:var(--paper-2); padding:20px 18px; flex:1 1 160px; }
+  .concl-tag{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:.05em; text-transform:uppercase; color:var(--accent); margin-bottom:8px; }
+  .concl-item p:last-child{ font-size:13.5px; margin:0; }
+
+  footer{ padding:44px 0; }
+  .footer-links{ display:flex; gap:18px; flex-wrap:wrap; font-family:'IBM Plex Mono', monospace; font-size:13px; }
+  .footer-meta{ font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--muted-on-dark); margin-top:18px; }
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <div class="topbar-inner">
+    <a href="index.html" class="u-link">&larr; Zurück zur Startseite</a>
+  </div>
+</nav>
+
+<header class="hero section-dark">
+  <div class="wrap">
+    <p class="grade-badge">Marktforschungsseminar &middot; Note 1,0</p>
+    <p class="eyebrow">Wirtschaftspsychologie &middot; Hochschule Neu-Ulm</p>
+    <h1 class="title">Zisternen-Konzeptstudie: Wie GARDENA den Markt für unterirdische Regenwasserzisternen erschließt</h1>
+    <p class="subtitle">Ist-Zustand, Customer Journey und Produktkonzept für unterirdische Zisternen, erhoben im Team über 217 Befragte aus drei Zielgruppen für GARDENA.</p>
+    <p class="meta-row">
+      <span>Team: Andreas Lammers, Maren Fischer, Stephen Hoffmann, Patrick Kovacs</span>
+      <span>&middot;</span>
+      <span>Präsentation: 16.01.2024</span>
+    </p>
+    <div class="cta-row">
+      <a class="btn btn-solid" href="Gardena_Zisternenstudie.pdf" target="_blank" rel="noopener">Vollständiges Reporting (PDF)</a>
+      <a class="btn btn-outline" href="index.html#projekte">Zu den Projekten</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section class="section section-light">
+    <div class="wrap">
+      <p class="eyebrow">Worum es geht</p>
+      <h2>Zisternen sind eine Nische. Und trotzdem sehr zufriedene Nutzer.</h2>
+      <p class="lede">Unterirdische Regenwasserzisternen sind kaum bekannt, aber wer eine besitzt, ist damit auffällig zufrieden. Diese Lücke zwischen geringer Bekanntheit und hoher Zufriedenheit war der Ausgangspunkt unseres Marktforschungsseminars für GARDENA.</p>
+      <p>Im Team haben wir untersucht, wie der Markt für unterirdische Zisternen heute aussieht, wie potenzielle Käufer auf dem Weg zur Kaufentscheidung ticken, und welches Produktkonzept GARDENA daraus ableiten sollte. Datengrundlage waren qualitative Interviews und eine quantitative Befragung mit 217 Teilnehmenden aus drei Zielgruppen.</p>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="wrap">
+      <p class="eyebrow">Vorgehen</p>
+      <h2>Von Interviews zur Datenanalyse in zehn Wochen</h2>
+
+      <p class="bars-label">Ablauf der Untersuchung</p>
+      <div class="process">
+        <div class="process-step">
+          <p class="process-num">20.10.</p>
+          <h4>Qualitative Interviews</h4>
+          <p>Erste explorative Gespräche</p>
+        </div>
+        <div class="process-step">
+          <p class="process-num">05.11.</p>
+          <h4>Fragebogenkonzeption</h4>
+          <p>Plus weitere Interviews</p>
+        </div>
+        <div class="process-step">
+          <p class="process-num">05.12.</p>
+          <h4>Pretest</h4>
+          <p>Fragebogen validiert</p>
+        </div>
+        <div class="process-step">
+          <p class="process-num">08.12.</p>
+          <h4>Datenerhebung</h4>
+          <p>Quantitative Befragung</p>
+        </div>
+        <div class="process-step">
+          <p class="process-num">02.01.</p>
+          <h4>Datenanalyse</h4>
+          <p>Auswertung &amp; Reporting</p>
+        </div>
+      </div>
+
+      <p class="bars-label" style="margin-top:36px;">Befragungsteilnehmer &middot; drei Zielgruppen</p>
+      <div class="stat-row">
+        <div class="stat">
+          <p class="stat-num">38</p>
+          <p class="stat-label">Zisternenbesitzer, bereits im Besitz einer unterirdischen Zisterne</p>
+        </div>
+        <div class="stat">
+          <p class="stat-num">61</p>
+          <p class="stat-label">Gartenbesitzer, aktuell ohne Zisterne, teils als Intender</p>
+        </div>
+        <div class="stat">
+          <p class="stat-num">118</p>
+          <p class="stat-label">Professionelle, beraten, verkaufen und bauen Zisternen ein</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="wrap">
+      <p class="eyebrow">Ergebnisse</p>
+      <h2>Wer eine Zisterne hat, würde sie sofort weiterempfehlen</h2>
+      <p>55% der bestehenden Zisternen sind aus Beton, meist beim Neubau eingebaut. Das aufgefangene Wasser wird fast ausschließlich im Garten genutzt, und die Zufriedenheit ist außergewöhnlich hoch.</p>
+
+      <p class="bars-label" style="margin-top:32px;">Hauptgründe für den Zisternenkauf</p>
+      <div class="bars">
+        <div class="bar-row">
+          <span class="bar-label">Wassereinsparung</span>
+          <span class="bar-value">79%</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:79%"></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Dürreperioden mit Regenwasser überbrücken</span>
+          <span class="bar-value">68%</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:68%"></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Nachhaltigkeit und Umweltschutz</span>
+          <span class="bar-value">61%</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:61%"></div></div>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Kosteneinsparungen</span>
+          <span class="bar-value">53%</span>
+          <div class="bar-track"><div class="bar-fill" style="--w:53%"></div></div>
+        </div>
+      </div>
+
+      <div class="stat-row-light">
+        <div class="stat-light">
+          <p class="stat-num">58</p>
+          <p class="stat-label">Net Promoter Score unter Zisternenbesitzern, 63% sind Promotoren</p>
+        </div>
+        <div class="stat-light">
+          <p class="stat-num">86%</p>
+          <p class="stat-label">hatten beim Einbau oder in der Nutzung keinerlei Probleme</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="wrap">
+      <p class="eyebrow">Ergebnisse</p>
+      <h2>Wer noch keine Zisterne hat, fürchtet vor allem den Preis</h2>
+      <p>Fast 90% der Interessenten (Intender) befürchten zu hohe Kosten für Zisterne und Einbau. Gleichzeitig zweifelt niemand an den ökologischen Vorteilen, und Nachhaltigkeit wird als Kaufgrund noch wichtiger als bei bestehenden Besitzern.</p>
+
+      <p class="bars-label" style="margin-top:32px;">Bedenken beim Zisterneneinbau</p>
+      <div class="bars">
+        <div class="nfa-row">
+          <span class="nfa-label">Zu hohe Kosten für Zisterne und Einbau</span>
+          <span class="nfa-value">88%</span>
+          <div class="nfa-track"><div class="nfa-fill" style="--w:88%"></div></div>
+        </div>
+        <div class="nfa-row">
+          <span class="nfa-label">Nicht ausreichend Informationen verfügbar</span>
+          <span class="nfa-value">48%</span>
+          <div class="nfa-track"><div class="nfa-fill" style="--w:48%"></div></div>
+        </div>
+        <div class="nfa-row">
+          <span class="nfa-label">Zu hoher Platzbedarf</span>
+          <span class="nfa-value">42%</span>
+          <div class="nfa-track"><div class="nfa-fill" style="--w:42%"></div></div>
+        </div>
+        <div class="nfa-row">
+          <span class="nfa-label">Zu wenig finanzielle Vorteile</span>
+          <span class="nfa-value">39%</span>
+          <div class="nfa-track"><div class="nfa-fill" style="--w:39%"></div></div>
+        </div>
+      </div>
+
+      <p class="quote quote-dark">&bdquo;Über 70% der Gartenbesitzer fühlen sich zum Thema Zisterne überhaupt nicht gut informiert.&ldquo;</p>
+      <p class="quote-attr">Aus der Befragung der Gartenbesitzer, n = 61</p>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="wrap">
+      <p class="eyebrow">Customer Journey</p>
+      <h2>Professionelle entscheiden mit, nicht nur der Käufer</h2>
+      <p>Zisternenprojekte laufen selten allein über den Endkunden: Fast die Hälfte informiert sich zuerst bei einem Fachbetrieb, und über die Journey hinweg begleiten Professionelle den Prozess von der Beratung bis zum Einbau.</p>
+
+      <p class="bars-label" style="margin-top:32px;">Ablauf der Customer Journey</p>
+      <div class="process">
+        <div class="process-step">
+          <p class="process-num">01</p>
+          <h4>Awareness</h4>
+          <p>47% über Professionelle, 32% Internetrecherche</p>
+        </div>
+        <div class="process-step">
+          <p class="process-num">02</p>
+          <h4>Überzeugung</h4>
+          <p>Volumenbestimmung meist selbst oder mit Profi</p>
+        </div>
+        <div class="process-step">
+          <p class="process-num">03</p>
+          <h4>Kauf &amp; Einbau</h4>
+          <p>39,5% kaufen direkt beim Professionellen</p>
+        </div>
+        <div class="process-step">
+          <p class="process-num">04</p>
+          <h4>Aftersales</h4>
+          <p>92% der Profis begleiten Beratung bis Einbau</p>
+        </div>
+        <div class="process-step">
+          <p class="process-num">05</p>
+          <h4>Kundenbindung</h4>
+          <p>NPS 58, hohe Weiterempfehlung</p>
+        </div>
+      </div>
+
+      <div class="stat-row-light">
+        <div class="stat-light">
+          <p class="stat-num">10,9</p>
+          <p class="stat-label">Wochen dauert der Prozess im Schnitt vom Auftrag bis zur Inbetriebnahme</p>
+        </div>
+        <div class="stat-light">
+          <p class="stat-num">94%</p>
+          <p class="stat-label">der Projektabbrüche hängen mit dem Preis oder Preis-Leistungs-Verhältnis zusammen</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-dark">
+    <div class="wrap">
+      <p class="eyebrow">Produktkonzept</p>
+      <h2>Zwei Zielgruppen, zwei unterschiedliche Prioritäten</h2>
+      <p>Zisternenbesitzer und Interessenten bewerten dieselben Produktmerkmale unterschiedlich: Besitzer priorisieren zuerst das Volumen, Interessenten zuerst die Garantie. Ein Produktkonzept für GARDENA muss beide Prioritäten bedienen.</p>
+
+      <div class="tier-grid" style="grid-template-columns:1fr 1fr;">
+        <div class="tier">
+          <p class="tier-tag">Zisternenbesitzer priorisieren</p>
+          <h4>Volumen zuerst</h4>
+          <p>1. Volumen 4.000-8.000 L &middot; 2. 20 Jahre Garantie &middot; 3. Baustoff Beton</p>
+        </div>
+        <div class="tier">
+          <p class="tier-tag">Interessenten priorisieren</p>
+          <h4>Garantie zuerst</h4>
+          <p>1. 20 Jahre Garantie &middot; 2. Volumen 4.000-8.000 L &middot; 3. Volumen bis 4.000 L</p>
+        </div>
+      </div>
+
+      <p class="bars-label" style="margin-top:36px;">Preiskorridor &middot; Kunststoffzisterne, 5.000 Liter</p>
+      <div class="stat-row">
+        <div class="stat">
+          <p class="stat-num">900&euro;</p>
+          <p class="stat-label">Untergrenze, darunter wirkt der Preis verdächtig günstig</p>
+        </div>
+        <div class="stat">
+          <p class="stat-num">1.300&euro;</p>
+          <p class="stat-label">Optimaler Preispunkt aus Sicht der Interessenten</p>
+        </div>
+        <div class="stat">
+          <p class="stat-num">1.500&euro;</p>
+          <p class="stat-label">Obergrenze, darüber gilt die Zisterne als zu teuer</p>
+        </div>
+      </div>
+
+      <p style="margin-top:28px;" class="muted">Beim Zubehör wünschen sich Interessenten deutlich mehr als bestehende Besitzer aktuell nutzen, allen voran eine App-Füllstandsanzeige (61% Wunsch gegenüber 0% heutiger Nutzung) und eine externe Pumpe (78% gegenüber 42%).</p>
+    </div>
+  </section>
+
+  <section class="section section-light">
+    <div class="wrap">
+      <p class="eyebrow">Fazit</p>
+      <h2>Der Preis ist die Hürde, das Bundle die Chance</h2>
+      <p>Die Studie zeigt ein wachsendes Nachhaltigkeitsbewusstsein und außergewöhnlich zufriedene Bestandskunden, aber auch zwei klare Hürden: den hohen Gesamtpreis aus Kauf und Einbau, und die zentrale Rolle der Professionellen in der Customer Journey. Eine gebündelte Gesamtlösung aus Produkt, Einbau und Zubehör adressiert beide Hürden gleichzeitig.</p>
+
+      <div class="concl-grid">
+        <div class="concl-item">
+          <p class="concl-tag">Trend</p>
+          <p>Bewusstsein für Nachhaltigkeit steigt</p>
+        </div>
+        <div class="concl-item">
+          <p class="concl-tag">Stärke</p>
+          <p>Hohe Zufriedenheit bei Zisternenbesitzern</p>
+        </div>
+        <div class="concl-item">
+          <p class="concl-tag">Hürde</p>
+          <p>Professionelle dominieren die Customer Journey</p>
+        </div>
+        <div class="concl-item">
+          <p class="concl-tag">Hürde</p>
+          <p>Hoher Gesamtpreis für Kauf und Einbau</p>
+        </div>
+        <div class="concl-item">
+          <p class="concl-tag">Chance</p>
+          <p>Gesamtlösung als Bundle</p>
+        </div>
+      </div>
+
+      <div class="cta-row" style="margin-top:28px;">
+        <a class="btn btn-solid" href="Gardena_Zisternenstudie.pdf" target="_blank" rel="noopener">Vollständiges Reporting lesen (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="section-dark">
+  <div class="wrap">
+    <div class="footer-links">
+      <a class="u-link" href="index.html">Zur Startseite</a>
+      <a class="u-link" href="mailto:stephen.ernst.hoffmann@gmail.com">E-Mail schreiben</a>
+      <a class="u-link" href="https://linkedin.com/in/stephen-e-hoffmann" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="footer-meta">Stephen Hoffmann &middot; München</p>
+  </div>
+</footer>
+
+</body>
+</html>
